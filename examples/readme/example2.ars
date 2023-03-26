@@ -1,0 +1,7 @@
+prep match location(coords) {
+    if coords{0} == 43.55 && coords{1} == 42.55 {
+        return coords
+    } else {
+        return [0, 0]
+    }
+}

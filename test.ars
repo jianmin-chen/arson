@@ -1,0 +1,4 @@
+burn x 1  # Variable
+for i through 0 10 {
+    burn x x + 1  # No prefix notation currently
+}
