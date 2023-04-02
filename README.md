@@ -2,7 +2,7 @@
 
 A programming language built for fun (no speed optimizations, probably has bugs, etc.)... around arson. (It's a joke though. Seriously).
 
-Usage: `python3 arson.py <program>.ars` (yes, I know, `ars`, haha)
+Usage: `python3 arson.py <program>.ars` (yes, I know, `ars`, haha). I'm learning more about how to package Python files as executables (`pyinstaller`?)
 
 **Make sure you have the latest version of Python! I'm using the lovely new keyword `match`.**
 
@@ -83,8 +83,11 @@ leave location
 
 Granted, some names don't make sense technically. But all of them revolve around being a pyromaniac, so +1 for that in my humble opinion.
 
-### Why?
+## How it works
 
-Reasoning behind design choices:
+1. Source
+2. Lexer creates tokens based on source
+3. Parser creates AST based on tokens
+4. Evaluator runs the AST, accounting for scope.
 
-* Comments start with a `#` because it was easy to tokenize. That's it.
+I might write a more detailed README later for my own purposes.
