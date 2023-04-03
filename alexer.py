@@ -7,7 +7,7 @@ TOKEN_TYPE = {
     "Array": "Array",
     "Dict": "Dict",
     "Func": "Func",
-    "CallFunc": "CallFunc",
+    "Call": "Call",
     "Var": "Var",
     "If": "If",
     "ElseIf": "ElseIf",
@@ -36,7 +36,9 @@ TOKEN_TYPE = {
     "Equal": "Equal",
     "Equality": "Equality",
     "LessThan": "LessThan",
+    "LessThanOrEqual": "LessThanOrEqual",
     "GreaterThan": "GreaterThan",
+    "GreaterThanOrEqual": "GreaterThanOrEqual",
     "Eof": "Eof",
     "Class": "Class",
     "Constructor": "Constructor",
@@ -55,7 +57,7 @@ KEYWORDS = {
     "through": TOKEN_TYPE["Range"],
     "prepmatch": TOKEN_TYPE["Func"],
     "while": TOKEN_TYPE["While"],
-    "lightmatch": TOKEN_TYPE["CallFunc"],
+    "lightmatch": TOKEN_TYPE["Call"],
     "lightertype": TOKEN_TYPE["Class"],
     "ignite": TOKEN_TYPE["Constructor"],
     "self": TOKEN_TYPE["Self"],
@@ -174,9 +176,17 @@ def scan_token(lexer):
         case "'":
             string("'")
         case "<":
-            lexer.add_token(TOKEN_TYPE["LessThan"], "<", "<")
+            if lexer.peek() == "=":
+                lexer.advance()
+                lexer.add_token(TOKEN_TYPE["LessThanOrEqual"], "<=", "<=")
+            else:
+                lexer.add_token(TOKEN_TYPE["LessThan"], "<", "<")
         case ">":
-            lexer.add_token(TOKEN_TYPE["GreaterThan"], ">", ">")
+            if lexer.peek() == "=":
+                lexer.advance()
+                lexer.add_token(TOKEN_TYPE["GreaterThanOrEqual"], ">=", ">=")
+            else:
+                lexer.add_token(TOKEN_TYPE["GreaterThan"], ">", ">")
         case ".":
             lexer.add_token(TOKEN_TYPE["Attribute"], ".", ".")
         case ":":

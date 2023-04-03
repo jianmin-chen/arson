@@ -48,7 +48,7 @@ def simple(parser):
     # Simple values: id | number | string | true | false | func | expr
     token = parser.eat(parser.peek_token_type())
     kind = token["type"]
-    if kind == TOKEN_TYPE["CallFunc"]:
+    if kind == TOKEN_TYPE["Call"]:
         token = parser.eat(parser.peek_token_type())
         kind = token["type"]
     if kind == TOKEN_TYPE["Word"]:
@@ -75,6 +75,15 @@ def simple(parser):
         result = expr(parser)
         parser.eat(TOKEN_TYPE["RightParen"])
         return result
+    elif kind == TOKEN_TYPE["LeftBracket"]:
+        items = []
+        if parser.peek_token_type() != TOKEN_TYPE["RightBracket"]:
+            items.append(expr(parser))
+            while parser.peek_token_type() == TOKEN_TYPE["Comma"]:
+                parser.eat(TOKEN_TYPE["Comma"])
+                items.append(expr(parser))
+        parser.eat(TOKEN_TYPE["RightBracket"])
+        return new_array(items)
     else:
         print("Expected expression but got " + token["type"])
         exit(1)
@@ -97,7 +106,9 @@ def is_op(token):
         TOKEN_TYPE["Times"],
         TOKEN_TYPE["Divide"],
         TOKEN_TYPE["LessThan"],
+        TOKEN_TYPE["LessThanOrEqual"],
         TOKEN_TYPE["GreaterThan"],
+        TOKEN_TYPE["GreaterThanOrEqual"],
         TOKEN_TYPE["Equality"],
         TOKEN_TYPE["Equal"],
         TOKEN_TYPE["And"],

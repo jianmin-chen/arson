@@ -26,12 +26,16 @@ def new_func(name, args, body):
     return {"type": AST_TYPE["Func"], "name": name, "args": args, "body": body}
 
 
+def new_call(func, args):
+    return {"type": AST_TYPE["Call"], "func": func, "args": args}
+
+
 def new_dict(name, items):
     return {"type": AST_TYPE["Dict"], "name": name, "items": items}
 
 
-def new_array(name, items):
-    return {"type": AST_TYPE["Array"], "name": name, "value": items}
+def new_array(items):
+    return {"type": AST_TYPE["Array"], "value": items}
 
 
 def new_return(value):

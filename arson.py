@@ -15,10 +15,13 @@ with open(argv[1]) as file:
     lexer = Lexer(source)
     scan_tokens(lexer)
     if OUTPUT_TO_FILE:
-        with open("output.json", "w") as f:
+        with open("lexer.out", "w") as f:
             f.write(dumps(lexer.tokens, indent=4))
     parser = Parser(lexer.tokens)
     ast = program(parser)
+    if OUTPUT_TO_FILE:
+        with open("parser.out", "w") as f:
+            f.write(dumps(ast, indent=4))
     new_scope = initial
     for node in ast:
         execute(node, new_scope)

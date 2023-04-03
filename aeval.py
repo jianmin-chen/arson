@@ -1,6 +1,7 @@
 from aast import AST_TYPE
 from sys import exit
 from abuiltins import fire
+import inspect
 
 
 initial = {"fire": fire}
@@ -23,7 +24,7 @@ def execute(ast, scope=initial):
             for i in range(0, len(ast["args"])):
                 local_scope[ast["args"][i]] = args[i]
             try:
-                for command in ast.body:
+                for command in ast["body"]:
                     execute(command, local_scope)
             except ReturnException as e:
                 return e["value"]
@@ -35,9 +36,13 @@ def execute(ast, scope=initial):
     elif kind == AST_TYPE["Return"]:
         raise ReturnException(evaluate(ast["value"], scope))
     elif kind == AST_TYPE["While"]:
-        pass
+        while evaluate(ast["condition"], scope):
+            for command in ast["body"]:
+                execute(command, scope)
     elif kind == AST_TYPE["For"]:
-        pass
+        for i in range(int(ast["range"][0]["value"]), int(ast["range"][1]["value"])):
+            for command in ast["body"]:
+                execute(command, scope)
     else:
         evaluate(ast, scope)
 
@@ -50,10 +55,16 @@ def evaluate(ast, scope=initial):
         or kind == AST_TYPE["Bool"]
     ):
         return ast["value"]
+    elif kind == AST_TYPE["Array"]:
+        items = []
+        for item in ast["value"]:
+            items.append(item["value"])
+        return items
     elif kind == AST_TYPE["Var"]:
         if ast["name"] in scope.keys():
             return scope[ast["name"]]
         print("Variable " + ast["name"] + " does not exist")
+        exit(1)
     elif kind == AST_TYPE["BinOp"]:
         op = ast["op"]
         if op == "+":
@@ -68,6 +79,12 @@ def evaluate(ast, scope=initial):
             return evaluate(ast["left"], scope) == evaluate(ast["right"], scope)
         elif op == "<":
             return evaluate(ast["left"], scope) < evaluate(ast["right"], scope)
+        elif op == "<=":
+            return evaluate(ast["left"], scope) <= evaluate(ast["right"], scope)
+        elif op == ">":
+            return evaluate(ast["left"], scope) > evaluate(ast["right"], scope)
+        elif op == ">=":
+            return evaluate(ast["left"], scope) >= evaluate(ast["right"], scope)
         elif op == "and":
             return evaluate(ast["left"], scope) and evaluate(ast["right"], scope)
         elif op == "or":

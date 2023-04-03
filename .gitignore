@@ -1,3 +1,5 @@
 __pycache__
 test.ars
-output.json
+lexer.out
+parser.out
+eval.out

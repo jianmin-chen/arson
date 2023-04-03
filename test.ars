@@ -1,2 +1,17 @@
+burn x = 1  # Variable
+for i through (0, 10) {
+    burn x = x + 1  # No prefix notation currently
+}
+
 burn time = true
 fire(time)  # => true
+
+prepmatch countdown(num) {
+    # This is a function. Function declarations start with "prep match".
+    while num > 0 {
+        fire(num)  # fire = "print" in every other language ever
+        burn num = num - 2
+    }
+}
+
+lightmatch countdown(x)  # Countdown back to 0

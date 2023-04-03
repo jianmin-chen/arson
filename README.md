@@ -96,5 +96,5 @@ I might write a more detailed README later.
 
 This is coming from someone who's worked primarily with JavaScript
 
-* I can't apply it to a reference value, e.g. `TOKEN_TYPE["Word"]`, when using `match`. Don't know if this is intentional or not, I might poke around the Cython repo sometime.
-* Creating functions on the fly with decorators?
+* I can't apply it to a reference value, e.g. `TOKEN_TYPE["Word"]`, when using `match`. Don't know if this is intentional or not.
+* Had to rename my Python files to start with `a` because they were interfering with actual Python files, e.g. `ast.py`.
