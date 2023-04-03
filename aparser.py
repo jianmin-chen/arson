@@ -48,6 +48,9 @@ def simple(parser):
     # Simple values: id | number | string | true | false | func | expr
     token = parser.eat(parser.peek_token_type())
     kind = token["type"]
+    if kind == TOKEN_TYPE["CallFunc"]:
+        token = parser.eat(parser.peek_token_type())
+        kind = token["type"]
     if kind == TOKEN_TYPE["Word"]:
         return new_var(token["value"])
     elif kind == TOKEN_TYPE["Number"]:
@@ -88,7 +91,7 @@ def call(parser):
 
 
 def is_op(token):
-    return token in [
+    return token["type"] in [
         TOKEN_TYPE["Plus"],
         TOKEN_TYPE["Minus"],
         TOKEN_TYPE["Times"],
@@ -106,7 +109,7 @@ def expr(parser):
     left = call(parser)
     if is_op(parser.peek_token()):
         op = parser.eat(parser.peek_token_type())["value"]
-        right = expr()
+        right = expr(parser)
         return new_binop(left, right, op)
     return left
 
@@ -114,6 +117,7 @@ def expr(parser):
 def var_stmt(parser):
     parser.eat(TOKEN_TYPE["Var"])
     id = parser.eat(TOKEN_TYPE["Word"])["value"]
+    parser.eat(TOKEN_TYPE["Equal"])
     value = expr(parser)
     return new_var(id, value)
 
@@ -121,9 +125,9 @@ def var_stmt(parser):
 def id_list(parser):
     # References in a group ()
     values = []
-    if parser.peek_token_type == TOKEN_TYPE["Word"]:
+    if parser.peek_token_type() == TOKEN_TYPE["Word"]:
         values.append(parser.eat(TOKEN_TYPE["Word"])["value"])
-        while parser.peek_token_type() != TOKEN_TYPE["Comma"]:
+        while parser.peek_token_type() == TOKEN_TYPE["Comma"]:
             parser.eat(TOKEN_TYPE["Comma"])
             parser.append(parser.eat(TOKEN_TYPE["Word"])["value"])
     return values
@@ -171,10 +175,11 @@ def for_stmt(parser):
     parser.eat(TOKEN_TYPE["LeftParen"])
     through = expr_list(parser)
     parser.eat(TOKEN_TYPE["RightParen"])
-    parser.eat(TOKEN_TYPE["LeftParen"])
+    parser.eat(TOKEN_TYPE["LeftBrace"])
     body = []
     while parser.peek_token_type() != TOKEN_TYPE["RightBrace"]:
         body.append(stmt(parser))
+    parser.eat(TOKEN_TYPE["RightBrace"])
     return new_for(id, through, body)
 
 
@@ -185,6 +190,7 @@ def while_stmt(parser):
     body = []
     while parser.peek_token_type() != TOKEN_TYPE["RightBrace"]:
         body.append(stmt(parser))
+    parser.eat(TOKEN_TYPE["RightBrace"])
     return new_while(condition, body)
 
 

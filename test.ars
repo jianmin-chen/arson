@@ -1,2 +1,2 @@
-burn time true
+burn time = true
 fire(time)  # => true
