@@ -1,9 +1,12 @@
-bring "example2.ars" containing location  # Importing a module
+bring "example2.ars" containing location  # Importing a module - you need to use containing scope
 
 burn x 1  # Variable
-for every i through (0, 10) {
+for i through (0, 10) {
     burn x x + 1  # No prefix notation currently
 }
+
+burn time true
+fire(time)  # => true
 
 prepmatch countdown(num) {
     # This is a function. Function declarations start with "prep match".
@@ -24,9 +27,7 @@ lighter type Flamethrower {
 
     use() {
         fire("In use...")
-        fire("""
-            TODO: Some random fire ASCII art
-        """)
+        fire("TODO")
     }
 }
 

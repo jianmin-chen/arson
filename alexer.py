@@ -40,9 +40,11 @@ TOKEN_TYPE = {
     "Eof": "Eof",
     "Class": "Class",
     "Constructor": "Constructor",
+    "Attribute": "Attribute",
     "Self": "Self",
     "New": "New",
-    "Range": "Range"
+    "Range": "Range",
+    "Assign": "Assign",
 }
 
 KEYWORDS = {
@@ -61,15 +63,15 @@ KEYWORDS = {
     "leave": TOKEN_TYPE["Export"],
     "if": TOKEN_TYPE["If"],
     "elif": TOKEN_TYPE["ElseIf"],
-    "else": TOKEN_TYPE["Else"]
+    "else": TOKEN_TYPE["Else"],
+    "true": TOKEN_TYPE["True"],
+    "false": TOKEN_TYPE["False"],
 }
 
+
 def new_token(kind, value, content):
-    return {
-        "type": kind,
-        "value": value,
-        "content": content
-    }
+    return {"type": kind, "value": value, "content": content}
+
 
 class Lexer:
     def __init__(self, source="", current=0, tokens=[], line=0):
@@ -79,15 +81,18 @@ class Lexer:
         self.line = line
 
     def peek(self):
-        if self.current >= len(self.source): return "\0"
+        if self.current >= len(self.source):
+            return "\0"
         return self.source[self.current]
 
     def peek_next(self):
-        if self.current >= len(self.source): return "\0"
+        if self.current >= len(self.source):
+            return "\0"
         return self.source[self.current + 1]
 
     def advance(self):
-        if self.current >= len(self.source): return "\0"
+        if self.current >= len(self.source):
+            return "\0"
         res = self.peek()
         self.current += 1
         return res
@@ -97,9 +102,10 @@ class Lexer:
             self.advance()
             return True
         return False
-    
+
     def add_token(self, kind, value, content):
         self.tokens.append(new_token(kind, value, content))
+
 
 def scan_token(lexer):
     char = lexer.advance()
@@ -171,13 +177,19 @@ def scan_token(lexer):
             lexer.add_token(TOKEN_TYPE["LessThan"], "<", "<")
         case ">":
             lexer.add_token(TOKEN_TYPE["GreaterThan"], ">", ">")
+        case ".":
+            lexer.add_token(TOKEN_TYPE["Attribute"], ".", ".")
+        case ":":
+            lexer.add_token(TOKEN_TYPE["Assign"], ":", ":")
         case "#":
-            while lexer.peek() != "\n":
+            while lexer.peek() != "\n" and lexer.peek() != "\0":
                 lexer.advance()
             lexer.line += 1
         case "\n":
             lexer.line += 1
         case " ":
+            return
+        case "\t":
             return
         case _:
             if char.isalpha():
@@ -187,13 +199,15 @@ def scan_token(lexer):
                 lexer.current -= 1
                 number()
             else:
-                raise Exception(f"Unexpected character: {char} at {lexer.line + 1}:{lexer.current + 1}")
+                raise Exception(
+                    f"Unexpected character: {char} at line {lexer.line + 1}"
+                )
+
 
 def scan_tokens(lexer):
     # Main wrapper function
     # Let's scan the tokens one by one, and place them in lexer.tokens
     while lexer.current < len(lexer.source):
-       scan_token(lexer)
+        scan_token(lexer)
     lexer.add_token(TOKEN_TYPE["Eof"], "", "")
     return lexer.tokens
-

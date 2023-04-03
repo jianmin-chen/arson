@@ -10,14 +10,15 @@ AST_TYPE = {
     "While": "While",
     "For": "For",
     "Number": "Number",
-    "String": "Bool",
+    "String": "String",
+    "Bool": "Bool",
     "BinOp": "BinOp",
     "Call": "Call",
     "Lambda": "Lambda",
 }
 
 
-def new_var(name, value):
+def new_var(name, value=""):
     return {"type": AST_TYPE["Var"], "name": name, "value": value}
 
 
@@ -53,8 +54,8 @@ def new_while(condition, body):
     return {"type": AST_TYPE["While"], "condition": condition, "body": body}
 
 
-def new_for(var, range):
-    return {"type": AST_TYPE["For"], "var": var, "range": range}
+def new_for(var, through, body):
+    return {"type": AST_TYPE["For"], "var": var, "range": through, "body": body}
 
 
 def new_number(val):

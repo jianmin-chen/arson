@@ -90,4 +90,11 @@ Granted, some names don't make sense technically. But all of them revolve around
 3. Parser creates AST based on tokens
 4. Evaluator runs the AST, accounting for scope.
 
-I might write a more detailed README later for my own purposes.
+I might write a more detailed README later.
+
+## Quirks I noticed working with Python
+
+This is coming from someone who's worked primarily with JavaScript
+
+* I can't apply it to a reference value, e.g. `TOKEN_TYPE["Word"]`, when using `match`. Don't know if this is intentional or not, I might poke around the Cython repo sometime.
+* Creating functions on the fly with decorators?
