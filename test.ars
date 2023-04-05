@@ -15,3 +15,17 @@ prepmatch countdown(num) {
 }
 
 lightmatch countdown(x)  # Countdown back to 0
+
+burn coords = [43.55, 42.55, "hi"]
+fire(coords)
+
+# Basic power function
+prepmatch power(num, exp) {
+    burn res = 1
+    for i through (0, exp) {
+        burn res = res * num
+    }
+    return res
+}
+
+fire(lightmatch power(8, 3))

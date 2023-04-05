@@ -52,6 +52,8 @@ def simple(parser):
         token = parser.eat(parser.peek_token_type())
         kind = token["type"]
     if kind == TOKEN_TYPE["Word"]:
+        if parser.peek_token_type() == "Attribute":
+            return attribute(parser)
         return new_var(token["value"])
     elif kind == TOKEN_TYPE["Number"]:
         return new_number(token["value"])
@@ -133,6 +135,16 @@ def var_stmt(parser):
     return new_var(id, value)
 
 
+def attribute(parser):
+    # Attribute of object, like .
+    # Can be method or actual attribute
+    # Check if LeftParen
+    parser.eat(TOKEN_TYPE["Attribute"])
+    id = parser.eat(TOKEN_TYPE["Word"])
+    if parser.peek_token_type() != TOKEN_TYPE["LeftParen"]:
+        return new_var(id)
+
+
 def id_list(parser):
     # References in a group ()
     values = []
@@ -140,7 +152,7 @@ def id_list(parser):
         values.append(parser.eat(TOKEN_TYPE["Word"])["value"])
         while parser.peek_token_type() == TOKEN_TYPE["Comma"]:
             parser.eat(TOKEN_TYPE["Comma"])
-            parser.append(parser.eat(TOKEN_TYPE["Word"])["value"])
+            values.append(parser.eat(TOKEN_TYPE["Word"])["value"])
     return values
 
 

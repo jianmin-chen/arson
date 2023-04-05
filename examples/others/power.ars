@@ -1,0 +1,8 @@
+prepmatch power(num, exp) {
+    # Basic power function
+    burn res = 1
+    for i through (0, exp) {
+        burn res = res * num
+    }
+    print(res)
+}

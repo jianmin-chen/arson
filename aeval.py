@@ -1,10 +1,10 @@
 from aast import AST_TYPE
 from sys import exit
-from abuiltins import fire
+from abuiltins import fire, Array
 import inspect
 
 
-initial = {"fire": fire}
+initial = {"fire": fire, "Array": Array}
 
 
 class ReturnException(Exception):
@@ -40,7 +40,10 @@ def execute(ast, scope=initial):
             for command in ast["body"]:
                 execute(command, scope)
     elif kind == AST_TYPE["For"]:
-        for i in range(int(ast["range"][0]["value"]), int(ast["range"][1]["value"])):
+        for i in range(
+            int(evaluate(ast["range"][0], scope)),
+            int(evaluate(ast["range"][1], scope)),
+        ):
             for command in ast["body"]:
                 execute(command, scope)
     else:
@@ -56,10 +59,7 @@ def evaluate(ast, scope=initial):
     ):
         return ast["value"]
     elif kind == AST_TYPE["Array"]:
-        items = []
-        for item in ast["value"]:
-            items.append(item["value"])
-        return items
+        return Array(ast["value"])
     elif kind == AST_TYPE["Var"]:
         if ast["name"] in scope.keys():
             return scope[ast["name"]]

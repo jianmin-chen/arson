@@ -1,54 +1,41 @@
-bring "example2.ars" containing location  # Importing a module - you need to use containing scope
-
-burn x 1  # Variable
+burn x = 1  # Variable
 for i through (0, 10) {
-    burn x x + 1  # No prefix notation currently
+    burn x = x + 1  # No prefix notation currently
 }
 
-burn time true
+burn time = true
 fire(time)  # => true
 
 prepmatch countdown(num) {
     # This is a function. Function declarations start with "prep match".
     while num > 0 {
         fire(num)  # fire = "print" in every other language ever
-        burn num num - 1
+        burn num = num - 1
     }
 }
 
 lightmatch countdown(x)  # Countdown back to 0
 
-lighter type Flamethrower {
-    ignite(type, desc) {
-        # "ignite" is the constructor method
-        self.type = type
-        self.description = desc
-    }
-
-    use() {
-        fire("In use...")
-        fire("TODO")
+prepmatch location(coords) {
+    if (coords[0] == 43.55 && coords[1] == 42.55) {
+        return coords
+    } else {
+        return [0, 0]
     }
 }
 
-burn flamethrower pullout Flamethrower("DIY", "Your favorite unreliable flamethrower")
-flamethrower.use()  # => In use...
-
-# Using the module from the beginning
 # Arrays work
 # This is probably an actual place, whoopsies
-burn placeToBurn location([43.55, 42.55])
+burn placeToBurn = location([43.55, 42.55])
 fire(placeToBurn)
 
 # What about dictionaries
-burn todo {
+burn todo = {
     "1": "Burn",
     "2": "Clean",
     "3": "Escape"
 }
-fire(todo{"1"})  # => Burn
-burn todo{"2"} "Vandalize"
-fire(todo{"2"})  # => Vandalize
-
-leave countdown, Flamethrower
+fire(todo["1"])  # => Burn
+burn todo["2"] = "Vandalize"
+fire(todo["2"])  # => Vandalize
 
