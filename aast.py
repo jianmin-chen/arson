@@ -14,7 +14,7 @@ AST_TYPE = {
     "Bool": "Bool",
     "BinOp": "BinOp",
     "Call": "Call",
-    "Lambda": "Lambda",
+    "Lambda": "Lambda"
 }
 
 
@@ -30,8 +30,8 @@ def new_call(func, args):
     return {"type": AST_TYPE["Call"], "func": func, "args": args}
 
 
-def new_dict(name, items):
-    return {"type": AST_TYPE["Dict"], "name": name, "items": items}
+def new_dict(items):
+    return {"type": AST_TYPE["Dict"], "items": items}
 
 
 def new_array(items):
@@ -80,7 +80,3 @@ def new_binop(left, right, op):
 
 def new_call(func, args):
     return {"type": AST_TYPE["Call"], "func": func, "args": args}
-
-
-def new_lambda(args, body):
-    return {"type": AST_TYPE["Lambda"], "args": args, "body": body}

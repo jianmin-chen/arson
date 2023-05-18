@@ -3,8 +3,8 @@ for i through (0, 10) {
     burn x = x + 1  # No prefix notation currently
 }
 
-burn time = true
-fire(time)  # => true
+burn time = True
+fire(time)  # => True
 
 prepmatch countdown(num) {
     # This is a function. Function declarations start with "prep match".
@@ -28,4 +28,5 @@ prepmatch power(num, exp) {
     return res
 }
 
-fire(lightmatch power(8, 3))
+burn y = lightmatch power(8, 3)
+fire(y)

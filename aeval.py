@@ -3,21 +3,16 @@ from sys import exit
 from abuiltins import fire, Array
 import inspect
 
-
 initial = {"fire": fire, "Array": Array}
 
 
 class ReturnException(Exception):
-    def __init__(self, message, errors, value):
-        super().__init__(self, message, errors)
-        self.value = value
+    pass
 
 
 def execute(ast, scope=initial):
     kind = ast["type"]
-    if kind == AST_TYPE["Var"]:
-        scope[ast["name"]] = evaluate(ast["value"], scope)
-    elif kind == AST_TYPE["Func"]:
+    if kind == AST_TYPE["Func"]:
         # This needs to return a function
         def func(*args):
             local_scope = scope
@@ -26,13 +21,15 @@ def execute(ast, scope=initial):
             try:
                 for command in ast["body"]:
                     execute(command, local_scope)
-            except ReturnException as e:
-                return e["value"]
-            except Exception as e:
-                exit(1)
+            except ReturnException as return_value:
+                return return_value
+            except Exception:
+                exit(2)
             return None
 
         scope[ast["name"]] = func
+    elif kind == AST_TYPE["Var"]:
+        scope[ast["name"]] = evaluate(ast["value"], scope)
     elif kind == AST_TYPE["Return"]:
         raise ReturnException(evaluate(ast["value"], scope))
     elif kind == AST_TYPE["While"]:
@@ -41,8 +38,7 @@ def execute(ast, scope=initial):
                 execute(command, scope)
     elif kind == AST_TYPE["For"]:
         for i in range(
-            int(evaluate(ast["range"][0], scope)),
-            int(evaluate(ast["range"][1], scope)),
+            int(evaluate(ast["range"][0], scope)), int(evaluate(ast["range"][1], scope))
         ):
             for command in ast["body"]:
                 execute(command, scope)
@@ -58,6 +54,11 @@ def evaluate(ast, scope=initial):
         or kind == AST_TYPE["Bool"]
     ):
         return ast["value"]
+    elif kind == AST_TYPE["Call"]:
+        args = []
+        for arg in ast["args"]:
+            args.append(evaluate(arg, scope))
+        return scope[ast["func"]["name"]](*args)
     elif kind == AST_TYPE["Array"]:
         return Array(ast["value"])
     elif kind == AST_TYPE["Var"]:
@@ -67,14 +68,14 @@ def evaluate(ast, scope=initial):
         exit(1)
     elif kind == AST_TYPE["BinOp"]:
         op = ast["op"]
-        if op == "+":
-            return evaluate(ast["left"], scope) + evaluate(ast["right"], scope)
-        elif op == "-":
-            return evaluate(ast["left"], scope) - evaluate(ast["right"], scope)
-        elif op == "*":
+        if op == "*":
             return evaluate(ast["left"], scope) * evaluate(ast["right"], scope)
         elif op == "/":
             return evaluate(ast["left"], scope) / evaluate(ast["right"], scope)
+        elif op == "+":
+            return evaluate(ast["left"], scope) + evaluate(ast["right"], scope)
+        elif op == "-":
+            return evaluate(ast["left"], scope) - evaluate(ast["right"], scope)
         elif op == "==":
             return evaluate(ast["left"], scope) == evaluate(ast["right"], scope)
         elif op == "<":
@@ -89,10 +90,3 @@ def evaluate(ast, scope=initial):
             return evaluate(ast["left"], scope) and evaluate(ast["right"], scope)
         elif op == "or":
             return evaluate(ast["left"], scope) or evaluate(ast["right"], scope)
-    elif kind == AST_TYPE["Call"]:
-        args = []
-        for arg in ast["args"]:
-            args.append(evaluate(arg, scope))
-        return evaluate(ast["func"], scope)(*args)
-    elif kind == AST_TYPE["Lambda"]:
-        pass

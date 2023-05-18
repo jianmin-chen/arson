@@ -15,7 +15,6 @@ from aast import (
     new_bool,
     new_binop,
     new_call,
-    new_lambda,
 )
 from sys import exit
 
@@ -119,6 +118,7 @@ def is_op(token):
 
 
 def expr(parser):
+    # TODO: We need to fix this so it applies PEMDAS
     left = call(parser)
     if is_op(parser.peek_token()):
         op = parser.eat(parser.peek_token_type())["value"]

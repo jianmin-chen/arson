@@ -11,10 +11,10 @@ class Array:
         self.items.append(new)
 
     def __repr__(self):
-        repr = []
+        res = []
         for item in self.items:
-            repr.append(item["value"])
-        return pprinter.pformat(repr)
+            res.append(item["value"])
+        return pprinter.pformat(res)
 
 
 def fire(*args):
