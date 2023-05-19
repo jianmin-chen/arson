@@ -14,7 +14,7 @@ AST_TYPE = {
     "Bool": "Bool",
     "BinOp": "BinOp",
     "Call": "Call",
-    "Lambda": "Lambda"
+    "Lambda": "Lambda",
 }
 
 
@@ -42,16 +42,21 @@ def new_return(value):
     return {"type": AST_TYPE["Return"], "value": value}
 
 
-def new_if(condition, body):
-    return {"type": AST_TYPE["If"], "condition": condition, "body": body}
+def new_if(condition, body, otherwise=None):
+    return {
+        "type": AST_TYPE["If"],
+        "condition": condition,
+        "body": body,
+        "otherwise": otherwise,
+    }
 
 
 def new_elif(condition, body):
     return {"type": AST_TYPE["Elif"], "condition": condition, "body": body}
 
 
-def new_else(condition, body):
-    return {"type": AST_TYPE["Else"], "condition": condition, "body": body}
+def new_else(body):
+    return {"type": AST_TYPE["Else"], "body": body}
 
 
 def new_while(condition, body):

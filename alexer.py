@@ -10,7 +10,7 @@ TOKEN_TYPE = {
     "Call": "Call",
     "Var": "Var",
     "If": "If",
-    "ElseIf": "ElseIf",
+    "Elif": "Elif",
     "Else": "Else",
     "While": "While",
     "For": "For",
@@ -42,7 +42,7 @@ TOKEN_TYPE = {
     "Attribute": "Attribute",
     "New": "New",
     "Range": "Range",
-    "Colon": "Colon"
+    "Colon": "Colon",
 }
 
 KEYWORDS = {
@@ -58,11 +58,14 @@ KEYWORDS = {
     "self": TOKEN_TYPE["Attribute"],
     "pullout": TOKEN_TYPE["New"],
     "if": TOKEN_TYPE["If"],
-    "elif": TOKEN_TYPE["ElseIf"],
+    "elif": TOKEN_TYPE["Elif"],
     "else": TOKEN_TYPE["Else"],
     "True": TOKEN_TYPE["True"],
-    "False": TOKEN_TYPE["False"]
+    "False": TOKEN_TYPE["False"],
+    "and": TOKEN_TYPE["And"],
+    "or": TOKEN_TYPE["Or"],
 }
+
 
 def new_token(kind, value, content):
     return {"type": kind, "value": value, "content": content}
@@ -134,8 +137,8 @@ def scan_token(lexer):
         text = ""
         while is_alphanumeric(lexer.peek()):
             text += lexer.advance()
-        kind = KEYWORDS.get(text, None) 
-        if kind is None: 
+        kind = KEYWORDS.get(text, None)
+        if kind is None:
             kind = TOKEN_TYPE["Word"]
         lexer.add_token(kind, text, text)
 
@@ -163,7 +166,11 @@ def scan_token(lexer):
         case "/":
             lexer.add_token(TOKEN_TYPE["Divide"], "/", "/")
         case "=":
-            lexer.add_token(TOKEN_TYPE["Equal"], "=", "=")
+            if lexer.peek() == "=":
+                lexer.advance()
+                lexer.add_token(TOKEN_TYPE["Equality"], "==", "==")
+            else:
+                lexer.add_token(TOKEN_TYPE["Equal"], "=", "=")
         case '"':
             string('"')
         case "'":
@@ -202,7 +209,9 @@ def scan_token(lexer):
                 lexer.current -= 1
                 number()
             else:
-                raise Exception(f"Unexpected character: {char} at line {lexer.line + 1}")
+                raise Exception(
+                    f"Unexpected character: {char} at line {lexer.line + 1}"
+                )
 
 
 def scan_tokens(lexer):

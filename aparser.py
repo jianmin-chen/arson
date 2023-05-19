@@ -188,7 +188,48 @@ def return_stmt(parser):
 
 
 def if_stmt(parser):
-    pass
+    # Deal with if, elif, and else statements in one bundle
+    # Recursive
+    parser.eat(TOKEN_TYPE["If"])
+    parser.eat(TOKEN_TYPE["LeftParen"])
+    condition = stmt(parser)
+    parser.eat(TOKEN_TYPE["RightParen"])
+    parser.eat(TOKEN_TYPE["LeftBrace"])
+    body = []
+    while parser.peek_token_type() != TOKEN_TYPE["RightBrace"]:
+        body.append(stmt(parser))
+    parser.eat(TOKEN_TYPE["RightBrace"])
+    otherwise = []
+    if parser.peek_token_type() == TOKEN_TYPE["Else"]:
+        otherwise.append(else_stmt(parser))
+    while parser.peek_token_type() == TOKEN_TYPE["Elif"]:
+        otherwise.append(elif_stmt(parser))
+    if parser.peek_token_type() == TOKEN_TYPE["Else"]:
+        otherwise.append(else_stmt(parser))
+    return new_if(condition, body, otherwise)
+
+
+def elif_stmt(parser):
+    parser.eat(TOKEN_TYPE["Elif"])
+    parser.eat(TOKEN_TYPE["LeftParen"])
+    condition = stmt(parser)
+    parser.eat(TOKEN_TYPE["RightParen"])
+    parser.eat(TOKEN_TYPE["LeftBrace"])
+    body = []
+    while parser.peek_token_type() != TOKEN_TYPE["RightBrace"]:
+        body.append(stmt(parser))
+    parser.eat(TOKEN_TYPE["RightBrace"])
+    return new_elif(condition, body)
+
+
+def else_stmt(parser):
+    parser.eat(TOKEN_TYPE["Else"])
+    parser.eat(TOKEN_TYPE["LeftBrace"])
+    body = []
+    while parser.peek_token_type() != TOKEN_TYPE["RightBrace"]:
+        body.append(stmt(parser))
+    parser.eat(TOKEN_TYPE["RightBrace"])
+    return new_else(body)
 
 
 def for_stmt(parser):
@@ -229,6 +270,8 @@ def stmt(parser):
         return for_stmt(parser)
     elif curr == TOKEN_TYPE["While"]:
         return while_stmt(parser)
+    elif curr == TOKEN_TYPE["If"]:
+        return if_stmt(parser)
     else:
         return expr(parser)
 

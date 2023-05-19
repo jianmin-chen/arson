@@ -33,15 +33,29 @@ def execute(ast, scope=initial):
     elif kind == AST_TYPE["Return"]:
         raise ReturnException(evaluate(ast["value"], scope))
     elif kind == AST_TYPE["While"]:
-        while evaluate(ast["condition"], scope):
-            for command in ast["body"]:
-                execute(command, scope)
+        for command in ast["body"]:
+            execute(command, scope)
     elif kind == AST_TYPE["For"]:
         for i in range(
-            int(evaluate(ast["range"][0], scope)), int(evaluate(ast["range"][1], scope))
+            int(evaluate(ast["range"][0], scope)),
+            int(evaluate(ast["range"][1], scope)),
         ):
             for command in ast["body"]:
                 execute(command, scope)
+    elif kind == AST_TYPE["If"]:
+        if evaluate(ast["condition"]):
+            for command in ast["body"]:
+                execute(command, scope)
+        else:
+            for stmt in ast["otherwise"]:
+                if stmt["type"] == AST_TYPE["Else"]:
+                    for command in stmt["body"]:
+                        execute(command, scope)
+                    break
+                if evaluate(stmt["condition"]):
+                    for command in stmt["body"]:
+                        execute(command, scope)
+                    break
     else:
         evaluate(ast, scope)
 

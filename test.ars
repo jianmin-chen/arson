@@ -30,3 +30,17 @@ prepmatch power(num, exp) {
 
 burn y = lightmatch power(8, 3)
 fire(y)
+
+prepmatch min(a, b) {
+    if (a == b or a < b) {
+        return a
+    } else {
+        return b
+    }
+}
+
+burn test = lightmatch min(2, 3)
+fire(test)
+
+burn coords = [43.55, 42.55]
+fire(coords[0])
