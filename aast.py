@@ -15,11 +15,16 @@ AST_TYPE = {
     "BinOp": "BinOp",
     "Call": "Call",
     "Lambda": "Lambda",
+    "Attribute": "Attribute",
 }
 
 
 def new_var(name, value=""):
     return {"type": AST_TYPE["Var"], "name": name, "value": value}
+
+
+def new_attribute(name, value, args=[]):
+    return {"type": AST_TYPE["Attribute"], "name": name, "value": value, "args": args}
 
 
 def new_func(name, args, body):

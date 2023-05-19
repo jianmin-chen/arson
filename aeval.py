@@ -1,13 +1,14 @@
 from aast import AST_TYPE
 from sys import exit
-from abuiltins import fire, Array
+from abuiltins import kind, fire, Array
 import inspect
 
-initial = {"fire": fire, "Array": Array}
+initial = {"kind": kind, "fire": fire, "Array": Array}
 
 
 class ReturnException(Exception):
-    pass
+    def __repr__(self):
+        return str(self.args[0])
 
 
 def execute(ast, scope=initial):
@@ -41,7 +42,9 @@ def execute(ast, scope=initial):
             int(evaluate(ast["range"][1], scope)),
         ):
             for command in ast["body"]:
-                execute(command, scope)
+                local = scope.copy()
+                local[ast["var"]["value"]] = i
+                execute(command, local)
     elif kind == AST_TYPE["If"]:
         if evaluate(ast["condition"]):
             for command in ast["body"]:
@@ -74,12 +77,23 @@ def evaluate(ast, scope=initial):
             args.append(evaluate(arg, scope))
         return scope[ast["func"]["name"]](*args)
     elif kind == AST_TYPE["Array"]:
-        return Array(ast["value"])
+        items = []
+        for item in ast["value"]:
+            items.append(evaluate(item, scope))
+        return Array(items)
     elif kind == AST_TYPE["Var"]:
         if ast["name"] in scope.keys():
             return scope[ast["name"]]
         print("Variable " + ast["name"] + " does not exist")
-        exit(1)
+        exit(2)
+    elif kind == AST_TYPE["Attribute"]:
+        if ast["name"] in scope.keys():
+            args = []
+            for arg in ast["args"]:
+                args.append(evaluate(arg, scope))
+            return scope[ast["name"]].attribute(ast["value"], args)
+        print(ast["name"] + " does not exist")
+        exit(2)
     elif kind == AST_TYPE["BinOp"]:
         op = ast["op"]
         if op == "*":

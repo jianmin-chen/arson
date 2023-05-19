@@ -1,6 +1,7 @@
 from alexer import TOKEN_TYPE
 from aast import (
     new_var,
+    new_attribute,
     new_func,
     new_dict,
     new_array,
@@ -51,8 +52,8 @@ def simple(parser):
         token = parser.eat(parser.peek_token_type())
         kind = token["type"]
     if kind == TOKEN_TYPE["Word"]:
-        if parser.peek_token_type() == "Attribute":
-            return attribute(parser)
+        if parser.peek_token_type() == "LeftBracket":
+            return attribute(parser, token["value"])
         return new_var(token["value"])
     elif kind == TOKEN_TYPE["Number"]:
         return new_number(token["value"])
@@ -135,14 +136,19 @@ def var_stmt(parser):
     return new_var(id, value)
 
 
-def attribute(parser):
-    # Attribute of object, like .
+def attribute(parser, name):
+    # Attribute of object, like []
     # Can be method or actual attribute
     # Check if LeftParen
-    parser.eat(TOKEN_TYPE["Attribute"])
-    id = parser.eat(TOKEN_TYPE["Word"])
+    parser.eat(TOKEN_TYPE["LeftBracket"])
+    id = parser.eat(parser.peek_token_type())
+    parser.eat(TOKEN_TYPE["RightBracket"])
     if parser.peek_token_type() != TOKEN_TYPE["LeftParen"]:
-        return new_var(id)
+        return new_attribute(name, id)
+    parser.eat(TOKEN_TYPE["LeftParen"])
+    args = expr_list(parser)
+    parser.eat(TOKEN_TYPE["RightParen"])
+    return new_attribute(name, id, args)
 
 
 def id_list(parser):

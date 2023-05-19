@@ -43,4 +43,16 @@ burn test = lightmatch min(2, 3)
 fire(test)
 
 burn coords = [43.55, 42.55]
-fire(coords[0])
+fire(coords[1])
+fire(coords["length"])
+
+for i through (0, coords["length"]) {
+    fire("index", i)
+}
+
+coords["push"](2 * 3)
+fire(coords)
+coords["push"](y)
+fire(coords)
+coords["push"](min)
+fire(coords)

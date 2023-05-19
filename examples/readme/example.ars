@@ -59,3 +59,7 @@ lightertype Flamethrower {
         }
     }
 }
+
+burn a = pullout Flamethrower("a", 2)
+burn b = pullout Flamethrower("b", 3)
+fire("a is more powerful than b", a[morePowerful](b))

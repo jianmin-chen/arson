@@ -39,7 +39,6 @@ TOKEN_TYPE = {
     "Eof": "Eof",
     "Class": "Class",
     "Constructor": "Constructor",
-    "Attribute": "Attribute",
     "New": "New",
     "Range": "Range",
     "Colon": "Colon",
@@ -55,7 +54,6 @@ KEYWORDS = {
     "lightmatch": TOKEN_TYPE["Call"],
     "lightertype": TOKEN_TYPE["Class"],
     "ignite": TOKEN_TYPE["Constructor"],
-    "self": TOKEN_TYPE["Attribute"],
     "pullout": TOKEN_TYPE["New"],
     "if": TOKEN_TYPE["If"],
     "elif": TOKEN_TYPE["Elif"],
@@ -187,8 +185,6 @@ def scan_token(lexer):
                 lexer.add_token(TOKEN_TYPE["GreaterThanOrEqual"], ">=", ">=")
             else:
                 lexer.add_token(TOKEN_TYPE["GreaterThan"], ">", ">")
-        case ".":
-            lexer.add_token(TOKEN_TYPE["Attribute"], ".", ".")
         case ":":
             lexer.add_token(TOKEN_TYPE["Colon"], ":", ":")
         case "#":
