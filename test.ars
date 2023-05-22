@@ -44,15 +44,20 @@ fire(test)
 
 burn coords = [43.55, 42.55]
 fire(coords[1])
-fire(coords["length"])
+fire(coords[length])
 
-for i through (0, coords["length"]) {
+for i through (0, coords[length]) {
     fire("index", i)
 }
 
-coords["push"](2 * 3)
+coords[push](2 * 3)
 fire(coords)
-coords["push"](y)
+coords[push](y)
 fire(coords)
-coords["push"](min)
+coords[push](min)
 fire(coords)
+coords[push]([1, 2])
+# fire(coords[5][0]) THIS DOESN'T WORK!
+
+coords[update](1, [1, 2])
+fire("Updated: ", coords)

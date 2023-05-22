@@ -16,6 +16,7 @@ AST_TYPE = {
     "Call": "Call",
     "Lambda": "Lambda",
     "Attribute": "Attribute",
+    "Word": "Word",
 }
 
 

@@ -131,6 +131,16 @@ def expr(parser):
 def var_stmt(parser):
     parser.eat(TOKEN_TYPE["Var"])
     id = parser.eat(TOKEN_TYPE["Word"])["value"]
+    """
+    if parser.peek_token_type() == TOKEN_TYPE["LeftBracket"]:
+        # burn attribute
+        parser.eat(TOKEN_TYPE["LeftBracket"])
+        attr = parser.eat(parser.peek_token_type())
+        parser.eat(TOKEN_TYPE["RightBracket"])
+        parser.eat(TOKEN_TYPE["Equal"])
+        value = expr(parser)
+        return new_update(id, attr, value)
+    """
     parser.eat(TOKEN_TYPE["Equal"])
     value = expr(parser)
     return new_var(id, value)
