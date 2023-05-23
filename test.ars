@@ -57,7 +57,7 @@ fire(coords)
 coords[push](min)
 fire(coords)
 coords[push]([1, 2])
-# fire(coords[5][0]) THIS DOESN'T WORK!
+fire(coords[5][0])
 
 coords[update](1, [1, 2])
 fire("Updated: ", coords)

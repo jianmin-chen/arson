@@ -1,5 +1,6 @@
 from aast import AST_TYPE
 from pprint import PrettyPrinter
+from random import randint
 
 pprinter = PrettyPrinter()
 
@@ -75,3 +76,7 @@ def fire(*args):
 def load(kind, store):
     # Wrapper for input
     pass
+
+
+def random(min, max):
+    return randint(min, max)

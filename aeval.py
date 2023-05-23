@@ -1,9 +1,9 @@
 from aast import AST_TYPE
 from sys import exit
-from abuiltins import kind, fire, Array
+from abuiltins import kind, fire, random, Array
 import inspect
 
-initial = {"kind": kind, "fire": fire, "Array": Array}
+initial = {"kind": kind, "fire": fire, "random": random, "Array": Array}
 
 
 class ReturnException(Exception):
@@ -87,11 +87,7 @@ def evaluate(ast, scope=initial):
         print("Variable " + ast["name"] + " does not exist")
         exit(2)
     elif kind == AST_TYPE["Attribute"]:
-        if ast["name"] in scope.keys():
-            args = []
-            for arg in ast["args"]:
-                args.append(evaluate(arg, scope))
-            return scope[ast["name"]].attribute(ast["value"], args)
+        # TODO
         print(ast["name"] + " does not exist")
         exit(2)
     elif kind == AST_TYPE["BinOp"]:

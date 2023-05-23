@@ -1,0 +1,23 @@
+burn min = 0
+burn max = 1000
+burn tries = 10
+
+prepmatch guessingGame(min, max, tries) {
+    burn num = random(min, max)
+    burn lives = tries
+    while (lives > 0) {
+        burn guess = lightmatch int(lightmatch load(""))
+        if (num == guess) {
+            lightmatch fire("You won with", lives, "lives left!")
+            return True
+        } elif (num > guess) {
+            lightmatch fire("Nope! The number I'm thinking of is larger than that.")
+        } else {
+            lightmatch fire("Nope! The number I'm thinking of is smaller than that.")
+        }
+        burn lives = lives - 1
+    }
+    fire("You lost! The number was", num)
+}
+
+lightmatch guessingGame(min, max, tries)

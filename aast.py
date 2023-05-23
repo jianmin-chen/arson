@@ -25,7 +25,12 @@ def new_var(name, value=""):
 
 
 def new_attribute(name, value, args=[]):
-    return {"type": AST_TYPE["Attribute"], "name": name, "value": value, "args": args}
+    return {
+        "type": AST_TYPE["Attribute"],
+        "name": name,
+        "value": value,
+        "args": args,
+    }
 
 
 def new_func(name, args, body):

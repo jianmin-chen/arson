@@ -52,8 +52,6 @@ def simple(parser):
         token = parser.eat(parser.peek_token_type())
         kind = token["type"]
     if kind == TOKEN_TYPE["Word"]:
-        if parser.peek_token_type() == "LeftBracket":
-            return attribute(parser, token["value"])
         return new_var(token["value"])
     elif kind == TOKEN_TYPE["Number"]:
         return new_number(token["value"])
@@ -131,16 +129,11 @@ def expr(parser):
 def var_stmt(parser):
     parser.eat(TOKEN_TYPE["Var"])
     id = parser.eat(TOKEN_TYPE["Word"])["value"]
-    """
-    if parser.peek_token_type() == TOKEN_TYPE["LeftBracket"]:
-        # burn attribute
-        parser.eat(TOKEN_TYPE["LeftBracket"])
-        attr = parser.eat(parser.peek_token_type())
-        parser.eat(TOKEN_TYPE["RightBracket"])
-        parser.eat(TOKEN_TYPE["Equal"])
-        value = expr(parser)
-        return new_update(id, attr, value)
-    """
+    if (
+        parser.peek_token_type() == TOKEN_TYPE["LeftBracket"]
+        or parser.peek_token_type() == TOKEN_TYPE["LeftParen"]
+    ):
+        return attribute(parser, id)
     parser.eat(TOKEN_TYPE["Equal"])
     value = expr(parser)
     return new_var(id, value)
@@ -149,16 +142,8 @@ def var_stmt(parser):
 def attribute(parser, name):
     # Attribute of object, like []
     # Can be method or actual attribute
-    # Check if LeftParen
-    parser.eat(TOKEN_TYPE["LeftBracket"])
-    id = parser.eat(parser.peek_token_type())
-    parser.eat(TOKEN_TYPE["RightBracket"])
-    if parser.peek_token_type() != TOKEN_TYPE["LeftParen"]:
-        return new_attribute(name, id)
-    parser.eat(TOKEN_TYPE["LeftParen"])
-    args = expr_list(parser)
-    parser.eat(TOKEN_TYPE["RightParen"])
-    return new_attribute(name, id, args)
+    # This can be recursive
+    pass
 
 
 def id_list(parser):
