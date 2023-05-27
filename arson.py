@@ -1,6 +1,6 @@
 from alexer import Lexer, scan_tokens
 from aparser import Parser, program
-from aeval import initial, execute
+from aeval import run
 from json import dumps
 from sys import argv, exit
 
@@ -22,6 +22,4 @@ with open(argv[1]) as file:
     if OUTPUT_TO_FILE:
         with open("parser.out", "w") as f:
             f.write(dumps(ast, indent=4))
-    new_scope = initial
-    for node in ast:
-        execute(node, new_scope)
+    run(ast)

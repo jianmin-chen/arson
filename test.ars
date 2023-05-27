@@ -8,13 +8,13 @@ fire(time)  # => True
 
 prepmatch countdown(num) {
     # This is a function. Function declarations start with "prep match".
-    while num > 0 {
+    while (num > 0) {
         fire(num)  # fire = "print" in every other language ever
         burn num = num - 2
     }
 }
 
-lightmatch countdown(x)  # Countdown back to 0
+countdown(x)  # Countdown back to 0
 
 burn coords = [43.55, 42.55, "hi"]
 fire(coords)
@@ -28,19 +28,20 @@ prepmatch power(num, exp) {
     return res
 }
 
-burn y = lightmatch power(8, 3)
+burn y = power(8, 3)
 fire(y)
 
 prepmatch min(a, b) {
-    if (a == b or a < b) {
+    if (a < b) {
         return a
     } else {
         return b
     }
 }
 
-burn test = lightmatch min(2, 3)
+burn test = min(2, 3)
 fire(test)
+fire("nesting", min(2, 3))
 
 burn coords = [43.55, 42.55]
 fire(coords[1])
@@ -52,7 +53,7 @@ for i through (0, coords[length]) {
 
 coords[push](2 * 3)
 fire(coords)
-coords[push](y)
+coords[push](y + 2)
 fire(coords)
 coords[push](min)
 fire(coords)
@@ -61,3 +62,5 @@ fire(coords[5][0])
 
 coords[update](1, [1, 2])
 fire("Updated: ", coords)
+
+fire(coords[1][1])

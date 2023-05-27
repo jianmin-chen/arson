@@ -1,13 +1,11 @@
 from alexer import TOKEN_TYPE
 from aast import (
     new_var,
-    new_attribute,
     new_func,
     new_dict,
     new_array,
     new_return,
     new_if,
-    new_elif,
     new_else,
     new_while,
     new_for,
@@ -16,6 +14,8 @@ from aast import (
     new_bool,
     new_binop,
     new_call,
+    new_attr,
+    new_chain,
 )
 from sys import exit
 
@@ -41,16 +41,32 @@ class Parser:
             self.current += 1
             return res
         token = self.peek_token()
-        raise Exception(f"Expected {type} but got {token.get('TYPE')} at {token.line}")
+        raise Exception(f"Expected {type} but got {token.get('TYPE')}")
+
+
+def stmt(parser):
+    curr = parser.peek_token_type()
+    if curr == TOKEN_TYPE["Var"]:
+        return var_stmt(parser)
+    elif curr == TOKEN_TYPE["Call"]:
+        return call(parser)
+    elif curr == TOKEN_TYPE["Func"]:
+        return func_stmt(parser)
+    elif curr == TOKEN_TYPE["Return"]:
+        return return_stmt(parser)
+    elif curr == TOKEN_TYPE["For"]:
+        return for_stmt(parser)
+    elif curr == TOKEN_TYPE["While"]:
+        return while_stmt(parser)
+    elif curr == TOKEN_TYPE["If"]:
+        return if_stmt(parser)
+    else:
+        return expr(parser)
 
 
 def simple(parser):
-    # Simple values: id | number | string | true | false | func | expr
     token = parser.eat(parser.peek_token_type())
     kind = token["type"]
-    if kind == TOKEN_TYPE["Call"]:
-        token = parser.eat(parser.peek_token_type())
-        kind = token["type"]
     if kind == TOKEN_TYPE["Word"]:
         return new_var(token["value"])
     elif kind == TOKEN_TYPE["Number"]:
@@ -61,20 +77,6 @@ def simple(parser):
         return new_bool(True)
     elif kind == TOKEN_TYPE["False"]:
         return new_bool(False)
-    elif kind == TOKEN_TYPE["Func"]:
-        parser.eat(TOKEN_TYPE["LeftParen"])
-        params = id_list(parser)
-        parser.eat(TOKEN_TYPE["RightParen"])
-        parser.eat(TOKEN_TYPE["LeftBrace"])
-        body = []
-        while parser.peek_token_type() != TOKEN_TYPE["RightBrace"]:
-            body.append(stmt(parser))
-        parser.eat(TOKEN_TYPE["RightBrace"])
-        return new_lambda(params, body)
-    elif kind == TOKEN_TYPE["LeftParen"]:
-        result = expr(parser)
-        parser.eat(TOKEN_TYPE["RightParen"])
-        return result
     elif kind == TOKEN_TYPE["LeftBracket"]:
         items = []
         if parser.peek_token_type() != TOKEN_TYPE["RightBracket"]:
@@ -84,19 +86,16 @@ def simple(parser):
                 items.append(expr(parser))
         parser.eat(TOKEN_TYPE["RightBracket"])
         return new_array(items)
+    elif kind == TOKEN_TYPE["LeftBrace"]:
+        obj = {}
+        if parser.peek_token_type() != TOKEN_TYPE["RightBrace"]:
+            key = parser.eat(TOKEN_TYPE["String"])
+            parser.eat(TOKEN_TYPE["Colon"])
+            obj[key["value"]] = expr(parser)
+        parser.eat(TOKEN_TYPE["RightBrace"])
+        return new_dict(obj)
     else:
-        print("Expected expression but got " + token["type"])
-        exit(1)
-
-
-def call(parser):
-    expr = simple(parser)
-    if parser.peek_token_type() == TOKEN_TYPE["LeftParen"]:
-        parser.eat(TOKEN_TYPE["LeftParen"])
-        args = expr_list(parser)
-        parser.eat(TOKEN_TYPE["RightParen"])
-        return new_call(expr, args)
-    return expr
+        raise Exception("Expected expression but got " + kind)
 
 
 def is_op(token):
@@ -116,6 +115,31 @@ def is_op(token):
     ]
 
 
+def call(parser):
+    res = simple(parser)
+    if (
+        parser.peek_token_type() == TOKEN_TYPE["LeftParen"]
+        or parser.peek_token_type() == TOKEN_TYPE["LeftBracket"]
+    ):
+        chain = []
+        while (
+            parser.peek_token_type() == TOKEN_TYPE["LeftParen"]
+            or parser.peek_token_type() == TOKEN_TYPE["LeftBracket"]
+        ):
+            if parser.peek_token_type() == TOKEN_TYPE["LeftParen"]:
+                parser.eat(TOKEN_TYPE["LeftParen"])
+                args = expr_list(parser)
+                parser.eat(TOKEN_TYPE["RightParen"])
+                chain.append(new_call(args))
+            else:
+                parser.eat(TOKEN_TYPE["LeftBracket"])
+                attr = expr(parser)
+                parser.eat(TOKEN_TYPE["RightBracket"])
+                chain.append(new_attr(attr))
+        return new_chain(res, chain)
+    return res
+
+
 def expr(parser):
     # TODO: We need to fix this so it applies PEMDAS
     left = call(parser)
@@ -124,26 +148,6 @@ def expr(parser):
         right = expr(parser)
         return new_binop(left, right, op)
     return left
-
-
-def var_stmt(parser):
-    parser.eat(TOKEN_TYPE["Var"])
-    id = parser.eat(TOKEN_TYPE["Word"])["value"]
-    if (
-        parser.peek_token_type() == TOKEN_TYPE["LeftBracket"]
-        or parser.peek_token_type() == TOKEN_TYPE["LeftParen"]
-    ):
-        return attribute(parser, id)
-    parser.eat(TOKEN_TYPE["Equal"])
-    value = expr(parser)
-    return new_var(id, value)
-
-
-def attribute(parser, name):
-    # Attribute of object, like []
-    # Can be method or actual attribute
-    # This can be recursive
-    pass
 
 
 def id_list(parser):
@@ -168,6 +172,14 @@ def expr_list(parser):
     return exprs
 
 
+def var_stmt(parser):
+    parser.eat(TOKEN_TYPE["Var"])
+    id = parser.eat(TOKEN_TYPE["Word"])["value"]
+    parser.eat(TOKEN_TYPE["Equal"])
+    value = expr(parser)
+    return new_var(id, value)
+
+
 def func_stmt(parser):
     parser.eat(TOKEN_TYPE["Func"])
     id = parser.eat(TOKEN_TYPE["Word"])["value"]
@@ -189,8 +201,6 @@ def return_stmt(parser):
 
 
 def if_stmt(parser):
-    # Deal with if, elif, and else statements in one bundle
-    # Recursive
     parser.eat(TOKEN_TYPE["If"])
     parser.eat(TOKEN_TYPE["LeftParen"])
     condition = stmt(parser)
@@ -220,7 +230,7 @@ def elif_stmt(parser):
     while parser.peek_token_type() != TOKEN_TYPE["RightBrace"]:
         body.append(stmt(parser))
     parser.eat(TOKEN_TYPE["RightBrace"])
-    return new_elif(condition, body)
+    return new_if(condition, body)
 
 
 def else_stmt(parser):
@@ -250,31 +260,15 @@ def for_stmt(parser):
 
 def while_stmt(parser):
     parser.eat(TOKEN_TYPE["While"])
+    parser.eat(TOKEN_TYPE["LeftParen"])
     condition = expr(parser)
+    parser.eat(TOKEN_TYPE["RightParen"])
     parser.eat(TOKEN_TYPE["LeftBrace"])
     body = []
     while parser.peek_token_type() != TOKEN_TYPE["RightBrace"]:
         body.append(stmt(parser))
     parser.eat(TOKEN_TYPE["RightBrace"])
     return new_while(condition, body)
-
-
-def stmt(parser):
-    curr = parser.peek_token_type()
-    if curr == TOKEN_TYPE["Var"]:
-        return var_stmt(parser)
-    elif curr == TOKEN_TYPE["Func"]:
-        return func_stmt(parser)
-    elif curr == TOKEN_TYPE["Return"]:
-        return return_stmt(parser)
-    elif curr == TOKEN_TYPE["For"]:
-        return for_stmt(parser)
-    elif curr == TOKEN_TYPE["While"]:
-        return while_stmt(parser)
-    elif curr == TOKEN_TYPE["If"]:
-        return if_stmt(parser)
-    else:
-        return expr(parser)
 
 
 def program(parser):

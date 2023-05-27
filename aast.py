@@ -3,20 +3,18 @@ AST_TYPE = {
     "Func": "Func",
     "Array": "Array",
     "Dict": "Dict",
-    "Return": "Return",
-    "If": "If",
-    "Elif": "Elif",
-    "Else": "Else",
-    "While": "While",
-    "For": "For",
     "Number": "Number",
     "String": "String",
     "Bool": "Bool",
     "BinOp": "BinOp",
+    "Return": "Return",
+    "If": "If",
+    "Else": "Else",
+    "While": "While",
+    "For": "For",
+    "Attr": "Attr",
     "Call": "Call",
-    "Lambda": "Lambda",
-    "Attribute": "Attribute",
-    "Word": "Word",
+    "Chain": "Chain",
 }
 
 
@@ -24,21 +22,8 @@ def new_var(name, value=""):
     return {"type": AST_TYPE["Var"], "name": name, "value": value}
 
 
-def new_attribute(name, value, args=[]):
-    return {
-        "type": AST_TYPE["Attribute"],
-        "name": name,
-        "value": value,
-        "args": args,
-    }
-
-
 def new_func(name, args, body):
     return {"type": AST_TYPE["Func"], "name": name, "args": args, "body": body}
-
-
-def new_call(func, args):
-    return {"type": AST_TYPE["Call"], "func": func, "args": args}
 
 
 def new_dict(items):
@@ -60,10 +45,6 @@ def new_if(condition, body, otherwise=None):
         "body": body,
         "otherwise": otherwise,
     }
-
-
-def new_elif(condition, body):
-    return {"type": AST_TYPE["Elif"], "condition": condition, "body": body}
 
 
 def new_else(body):
@@ -94,5 +75,13 @@ def new_binop(left, right, op):
     return {"type": AST_TYPE["BinOp"], "left": left, "right": right, "op": op}
 
 
-def new_call(func, args):
-    return {"type": AST_TYPE["Call"], "func": func, "args": args}
+def new_call(args):
+    return {"type": AST_TYPE["Call"], "args": args}
+
+
+def new_attr(attr):
+    return {"type": AST_TYPE["Attr"], "args": attr}
+
+
+def new_chain(name, chain):
+    return {"type": AST_TYPE["Chain"], "name": name, "chain": chain}
