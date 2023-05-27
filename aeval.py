@@ -1,7 +1,7 @@
 from aast import AST_TYPE
 from sys import exit
-from abuiltins import builtins, Array
-import pprint
+from abuiltins import builtins, Array, Dict
+from pprint import pformat
 import inspect
 
 initial = builtins
@@ -9,7 +9,7 @@ initial = builtins
 
 class ReturnException(Exception):
     def __repr__(self):
-        return pprint.pformat(self.args[0])
+        return pformat(self.args[0])
 
 
 def execute(ast, scope=initial):
@@ -87,6 +87,7 @@ def evaluate(ast, scope=initial):
                 local = local()
         for i, link in enumerate(ast["chain"][1:]):
             # Go through every "link" in the "chain" and apply it to the initial value
+            # i + 2 because we're using enumerate, so it starts at zero but we have a sliced list
             if link["type"] == AST_TYPE["Call"]:
                 args = []
                 for arg in link["args"]:
@@ -95,8 +96,8 @@ def evaluate(ast, scope=initial):
             elif link["type"] == AST_TYPE["Attr"]:
                 local = local._getattr(link["args"])
                 if (
-                    len(ast["chain"]) != i + 1
-                    and ast["chain"][i + 1]["type"] != AST_TYPE["Call"]
+                    len(ast["chain"]) != i + 2
+                    and ast["chain"][i + 2]["type"] != AST_TYPE["Call"]
                     and callable(local)
                 ):
                     local = local()
@@ -108,8 +109,10 @@ def evaluate(ast, scope=initial):
             items.append(evaluate(item, scope))
         return Array(items)
     elif kind == AST_TYPE["Dict"]:
-        # TODO
-        pass
+        obj = {}
+        for key in ast["items"].keys():
+            obj[key] = evaluate(ast["items"][key], scope)
+        return Dict(obj)
     elif kind == AST_TYPE["Var"]:
         if ast["name"] in scope.keys():
             return scope[ast["name"]]

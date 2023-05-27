@@ -88,10 +88,12 @@ def simple(parser):
         return new_array(items)
     elif kind == TOKEN_TYPE["LeftBrace"]:
         obj = {}
-        if parser.peek_token_type() != TOKEN_TYPE["RightBrace"]:
+        while parser.peek_token_type() != TOKEN_TYPE["RightBrace"]:
             key = parser.eat(TOKEN_TYPE["String"])
             parser.eat(TOKEN_TYPE["Colon"])
             obj[key["value"]] = expr(parser)
+            if parser.peek_token_type() != TOKEN_TYPE["RightBrace"]:
+                parser.eat(TOKEN_TYPE["Comma"])
         parser.eat(TOKEN_TYPE["RightBrace"])
         return new_dict(obj)
     else:

@@ -60,7 +60,18 @@ fire(coords)
 coords[push]([1, 2])
 fire(coords[5][0])
 
-coords[update](1, [1, 2])
-fire("Updated: ", coords)
+coords[update](1, "hi this works")
+coords[5][update](1, coords[5][1] * 2)
+fire(coords)
 
-fire(coords[1][1])
+# What about dictionaries
+burn todo = {
+    "1": "Burn",
+    "2": "Clean",
+    "3": "Escape"
+}
+fire(todo)
+fire(todo["1"])  # => Burn
+todo[update]("2", [1, 2, {"a": "foo", "b": "bar"}])
+fire("updated", todo)
+fire(todo["2"][2]["b"])
