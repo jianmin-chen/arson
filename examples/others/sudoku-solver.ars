@@ -97,11 +97,11 @@ prepmatch solve(grid) {
     return False
 }
 
-lightmatch fire("Sudoku grid unsolved:")
-lightmatch printGrid(sudokuGrid)
-if (lightmatch solve(sudokuGrid)) {
-    lightmatch fire("Sudoku grid solved:")
-    lightmatch printGrid(sudokuGrid)
+fire("Sudoku grid unsolved:")
+printGrid(sudokuGrid)
+if (solve(sudokuGrid)) {
+    fire("Sudoku grid solved:")
+    printGrid(sudokuGrid)
 } else {
-    lightmatch fire("No solution found.")
+    fire("No solution found.")
 }

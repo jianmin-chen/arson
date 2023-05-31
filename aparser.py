@@ -2,6 +2,7 @@ from alexer import TOKEN_TYPE
 from aast import (
     new_var,
     new_func,
+    new_class,
     new_dict,
     new_array,
     new_return,
@@ -52,6 +53,8 @@ def stmt(parser):
         return call(parser)
     elif curr == TOKEN_TYPE["Func"]:
         return func_stmt(parser)
+    elif curr == TOKEN_TYPE["Class"]:
+        return class_stmt(parser)
     elif curr == TOKEN_TYPE["Return"]:
         return return_stmt(parser)
     elif curr == TOKEN_TYPE["For"]:
@@ -77,6 +80,9 @@ def simple(parser):
         return new_bool(True)
     elif kind == TOKEN_TYPE["False"]:
         return new_bool(False)
+    elif kind == TOKEN_TYPE["New"]:
+        # New instance
+        id = parser.eat(TOKEN_TYPE["Word"])
     elif kind == TOKEN_TYPE["LeftBracket"]:
         items = []
         if parser.peek_token_type() != TOKEN_TYPE["RightBracket"]:
@@ -194,6 +200,17 @@ def func_stmt(parser):
         body.append(stmt(parser))
     parser.eat(TOKEN_TYPE["RightBrace"])
     return new_func(id, params, body)
+
+
+def class_stmt(parser):
+    parser.eat(TOKEN_TYPE["Class"])
+    id = parser.eat(TOKEN_TYPE["Word"])["value"]
+    parser.eat(TOKEN_TYPE["LeftBrace"])
+    methods = []
+    while parser.peek_token_type() == TOKEN_TYPE["Func"]:
+        methods.append(func_stmt(parser))
+    parser.eat(TOKEN_TYPE["RightBrace"])
+    return new_class(id, methods)
 
 
 def return_stmt(parser):

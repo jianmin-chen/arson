@@ -75,3 +75,25 @@ fire(todo["1"])  # => Burn
 todo[update]("2", [1, 2, {"a": "foo", "b": "bar"}])
 fire("updated", todo)
 fire(todo["2"][2]["b"])
+
+lightertype Flamethrower {
+    prepmatch ignite(type, strength) {
+        # "ignite" is the constructor method
+        self[type] = type
+        self[strength] = strength
+    }
+
+    prepmatch use() {
+        fire("In use...")
+    }
+
+    prepmatch morePowerful(flamethrower) {
+        if (self[strength] > flamethrower[strength]) {
+            return True
+        } else {
+            return False
+        }
+    }
+}
+
+burn a = pullout Flamethrower("a", 2)

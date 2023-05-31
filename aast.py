@@ -1,6 +1,7 @@
 AST_TYPE = {
     "Var": "Var",
     "Func": "Func",
+    "Class": "Class",
     "Array": "Array",
     "Dict": "Dict",
     "Number": "Number",
@@ -24,6 +25,14 @@ def new_var(name, value=""):
 
 def new_func(name, args, body):
     return {"type": AST_TYPE["Func"], "name": name, "args": args, "body": body}
+
+
+def new_class(name, methods):
+    return {
+        "type": AST_TYPE["Class"],
+        "name": name,
+        "methods": methods,
+    }
 
 
 def new_dict(items):

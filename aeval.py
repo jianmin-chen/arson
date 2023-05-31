@@ -32,6 +32,15 @@ def execute(ast, scope=initial):
         scope[ast["name"]] = func
     elif kind == AST_TYPE["Var"]:
         scope[ast["name"]] = evaluate(ast["value"], scope)
+    elif kind == AST_TYPE["Class"]:
+        # Create a class
+        class Class(object):
+            pass
+
+        class_copy = Class()
+        # Classes just contain functions, but the difference is that these functions can access class-specific attributes?
+
+        scope[ast["name"]] = class_copy
     elif kind == AST_TYPE["Return"]:
         raise ReturnException(evaluate(ast["value"], scope))
     elif kind == AST_TYPE["If"]:

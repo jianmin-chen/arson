@@ -1,10 +1,10 @@
-burn number = lightmatch int(lightmatch load("Enter the number of terms: "))
+burn number = int(lightmatch load("Enter the number of terms: "))
 burn one = 0
 burn two = 1
 burn nextTerm = -1
 
 for i through (1, number) {
-    lightmatch fire(one)
+    fire(one)
     burn nextTerm = one + two
     burn one = two
     burn two = nextTerm
