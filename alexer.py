@@ -50,7 +50,6 @@ KEYWORDS = {
     "through": TOKEN_TYPE["Range"],
     "prepmatch": TOKEN_TYPE["Func"],
     "while": TOKEN_TYPE["While"],
-    "lightmatch": TOKEN_TYPE["Call"],
     "lightertype": TOKEN_TYPE["Class"],
     "pullout": TOKEN_TYPE["New"],
     "if": TOKEN_TYPE["If"],

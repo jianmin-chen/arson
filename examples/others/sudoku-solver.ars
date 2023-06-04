@@ -54,9 +54,9 @@ prepmatch usedBox(grid, startingRow, startingColumn, num) {
 }
 
 prepmatch isSafe(grid, row, column, num) {
-    burn rowUsed = lightmatch usedRow(grid, row, num)
-    burn columnUsed = lightmatch usedColumn(grid, column, num)
-    burn boxUsed = lightmatch usedBox(grid, row - row % 3, column - column % 3, num)
+    burn rowUsed = usedRow(grid, row, num)
+    burn columnUsed = usedColumn(grid, column, num)
+    burn boxUsed = usedBox(grid, row - row % 3, column - column % 3, num)
     if (rowUsed == False and columnUsed == False and boxUsed == False) {
         return True
     }
@@ -76,18 +76,18 @@ prepmatch emptySquare(grid) {
 
 prepmatch solve(grid) {
     # The heart of the code - this is a recursive function
-    if (lightmatch emtpySquare(grid) == False) {
+    if (emtpySquare(grid) == False) {
         # If there are no more empty squares
         return True
     }
-    burn pos = lightmatch emptySquare(grid)
+    burn pos = emptySquare(grid)
     burn row = pos[0]
     burn col = pos[1]
     for num through (1, 10) {
         # Test all numbers 1 - 9
-        if (lightmatch isSafe(grid, row, col, num)) {
+        if (isSafe(grid, row, col, num)) {
             grid[row].update(col, num)
-            if (lightmatch solve(grid)) {
+            if (solve(grid)) {
                 # Recursively run solve() again; if the final result returns True, then grid has been solved
                 return True
             }

@@ -72,6 +72,9 @@ def simple(parser):
     kind = token["type"]
     if kind == TOKEN_TYPE["Word"]:
         return new_var(token["value"])
+    elif kind == TOKEN_TYPE["Minus"]:
+        # Negative number
+        return new_number(-simple(parser)["value"])
     elif kind == TOKEN_TYPE["Number"]:
         return new_number(token["value"])
     elif kind == TOKEN_TYPE["String"]:

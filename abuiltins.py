@@ -50,7 +50,7 @@ class Dict:
 
 def fire(*args):
     for arg in args:
-        print(arg, end=" ")
+        print(arg, end="")
     print()
 
 
@@ -63,4 +63,12 @@ def random(min, max):
     return randint(min, max)
 
 
-builtins = {"fire": fire, "load": load, "random": random}
+builtins = {
+    "fire": fire,
+    "load": load,
+    "random": random,
+    "int": int,
+    "float": float,
+    "str": str,
+    "bool": bool,
+}

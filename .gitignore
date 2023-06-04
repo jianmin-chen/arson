@@ -1,5 +1,4 @@
 __pycache__
 test.ars
-lexer.out
-parser.out
+*.out
 eval.out

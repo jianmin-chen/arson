@@ -14,7 +14,7 @@ prepmatch countdown(num) {
     }
 }
 
-lightmatch countdown(x)  # Countdown back to 0
+countdown(x)  # Countdown back to 0
 
 prepmatch location(coords) {
     if (coords[0] == 43.55 and coords[1] == 42.55) {
@@ -43,8 +43,8 @@ fire(todo["2"])  # => Vandalize
 lightertype Flamethrower {
     prepmatch ignite(type, strength) {
         # "ignite" is the constructor method
-        self.type = type
-        self.strength = strength
+        self[type] = type
+        self[strength] = strength
     }
 
     prepmatch use() {
@@ -52,7 +52,7 @@ lightertype Flamethrower {
     }
 
     prepmatch morePowerful(flamethrower) {
-        if (self.strength > flamethrower.strength) {
+        if (self[strength] > flamethrower[strength]) {
             return True
         } else {
             return False

@@ -76,6 +76,7 @@ todo[update]("2", [1, 2, {"a": "foo", "b": "bar"}])
 fire("updated", todo)
 fire(todo["2"][2]["b"])
 
+# Classes! No inheritance, etc. but it works
 lightertype Flamethrower {
     prepmatch ignite(type, strength) {
         # "ignite" is the constructor method
@@ -95,5 +96,3 @@ lightertype Flamethrower {
         }
     }
 }
-
-burn a = pullout Flamethrower("a", 2)
