@@ -26,6 +26,9 @@ class Array:
     def update(self, index, value):
         self.items[int(index)] = value
 
+    def __eq__(self, other):
+        return self.items == other.items
+
     def __repr__(self):
         return pformat(self.items)
 

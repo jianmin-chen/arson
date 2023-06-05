@@ -76,23 +76,5 @@ todo[update]("2", [1, 2, {"a": "foo", "b": "bar"}])
 fire("updated", todo)
 fire(todo["2"][2]["b"])
 
-# Classes! No inheritance, etc. but it works
-lightertype Flamethrower {
-    prepmatch ignite(type, strength) {
-        # "ignite" is the constructor method
-        self[type] = type
-        self[strength] = strength
-    }
-
-    prepmatch use() {
-        fire("In use...")
-    }
-
-    prepmatch morePowerful(flamethrower) {
-        if (self[strength] > flamethrower[strength]) {
-            return True
-        } else {
-            return False
-        }
-    }
-}
+burn test = [1, 1]
+fire(test[0] == test[1])

@@ -6,6 +6,21 @@ import inspect
 
 initial = builtins
 
+# PEMDAS
+SORTED_OPS = {
+    "-": 0,
+    "+": 0,
+    "or": 1,
+    "and": 1,
+    "/": 2,
+    "*": 2,
+    "==": 2,
+    ">": 2,
+    "<": 2,
+    ">=": 2,
+    "<=": 2,
+}
+
 
 class ReturnException(Exception):
     def __repr__(self):
@@ -127,29 +142,70 @@ def evaluate(ast, scope=initial):
             return scope[ast["name"]]
         raise Exception("Variable " + ast["name"] + " does not exist")
     elif kind == AST_TYPE["BinOp"]:
-        op = ast["op"]
-        if op == "*":
-            return evaluate(ast["left"], scope) * evaluate(ast["right"], scope)
-        elif op == "/":
-            return evaluate(ast["left"], scope) / evaluate(ast["right"], scope)
-        elif op == "+":
-            return evaluate(ast["left"], scope) + evaluate(ast["right"], scope)
-        elif op == "-":
-            return evaluate(ast["left"], scope) - evaluate(ast["right"], scope)
-        elif op == "==":
-            return evaluate(ast["left"], scope) == evaluate(ast["right"], scope)
-        elif op == "<":
-            return evaluate(ast["left"], scope) < evaluate(ast["right"], scope)
-        elif op == "<=":
-            return evaluate(ast["left"], scope) <= evaluate(ast["right"], scope)
-        elif op == ">":
-            return evaluate(ast["left"], scope) > evaluate(ast["right"], scope)
-        elif op == ">=":
-            return evaluate(ast["left"], scope) >= evaluate(ast["right"], scope)
-        elif op == "and":
-            return evaluate(ast["left"], scope) and evaluate(ast["right"], scope)
-        elif op == "or":
-            return evaluate(ast["left"], scope) or evaluate(ast["right"], scope)
+
+        def calculate(left, right, op):
+            if op == "*":
+                return left * right
+            elif op == "/":
+                return left / right
+            elif op == "+":
+                return left + right
+            elif op == "-":
+                return left - right
+            elif op == "==":
+                return left == right
+            elif op == "<":
+                return left < right
+            elif op == "<=":
+                return left <= right
+            elif op == ">":
+                return left > right
+            elif op == ">=":
+                return left >= right
+            elif op == "and":
+                return left and right
+            elif op == "or":
+                return left or right
+
+        if ast["right"]["type"] != AST_TYPE["BinOp"]:
+            return calculate(
+                evaluate(ast["left"], scope), evaluate(ast["right"], scope), ast["op"]
+            )
+
+        # Shunting yard algorithm otherwise
+        n = [evaluate(ast["left"], scope)]
+        ops = [ast["op"]]
+        expr = ast["right"]
+        while expr["type"] == AST_TYPE["BinOp"]:
+            expr_op = expr["op"]
+            if len(ops) and (SORTED_OPS[expr_op] <= SORTED_OPS[ops[-1]]):
+                left = n.pop()
+                right = expr["left"]
+                op = ops.pop()
+                n.append(calculate(left, evaluate(right, scope), op))
+                while len(ops) and (SORTED_OPS[op] < SORTED_OPS[op[-1]]):
+                    right = n.pop()
+                    left = n.pop()
+                    op = ops.pop()
+                    n.append(calculate(left, evaluate(right, scope), op))
+            else:
+                n.append(evaluate(expr["left"], scope))
+            ops.append(expr_op)
+            expr = expr["right"]
+        if expr:
+            n.append(evaluate(expr, scope))
+            if len(ops) > 1 and (SORTED_OPS[ops[1]] > SORTED_OPS[ops[0]]):
+                right = n.pop()
+                left = n.pop()
+                op = ops.pop()
+                print("inside", left, right, op)
+                n.append(calculate(left, right, op))
+        while len(n) > 1:
+            left = n.pop(0)
+            right = n.pop(0)
+            op = ops.pop(0)
+            n.insert(0, calculate(left, right, op))
+        return n[0]
 
 
 def run(ast):
