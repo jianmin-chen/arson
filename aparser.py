@@ -86,6 +86,11 @@ def simple(parser):
     elif kind == TOKEN_TYPE["New"]:
         # New instance
         id = parser.eat(TOKEN_TYPE["Word"])
+    elif kind == TOKEN_TYPE["LeftParen"]:
+        # Left parentheses
+        left = expr(parser, True)
+        parser.eat(TOKEN_TYPE["RightParen"])
+        return left
     elif kind == TOKEN_TYPE["LeftBracket"]:
         items = []
         if parser.peek_token_type() != TOKEN_TYPE["RightBracket"]:
@@ -151,13 +156,12 @@ def call(parser):
     return res
 
 
-def expr(parser):
-    # TODO: We need to fix this so it applies PEMDAS
+def expr(parser, wrapped=False):
     left = call(parser)
     if is_op(parser.peek_token()):
         op = parser.eat(parser.peek_token_type())["value"]
         right = expr(parser)
-        return new_binop(left, right, op)
+        return new_binop(left, right, op, wrapped)
     return left
 
 

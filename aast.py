@@ -80,8 +80,14 @@ def new_bool(val):
     return {"type": AST_TYPE["Bool"], "value": val}
 
 
-def new_binop(left, right, op):
-    return {"type": AST_TYPE["BinOp"], "left": left, "right": right, "op": op}
+def new_binop(left, right, op, wrapped=False):
+    return {
+        "type": AST_TYPE["BinOp"],
+        "left": left,
+        "right": right,
+        "op": op,
+        "wrapped": wrapped,
+    }
 
 
 def new_call(args):

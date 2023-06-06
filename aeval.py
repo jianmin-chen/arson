@@ -180,7 +180,7 @@ def evaluate(ast, scope=initial):
             expr_op = expr["op"]
             if len(ops) and (SORTED_OPS[expr_op] <= SORTED_OPS[ops[-1]]):
                 left = n.pop()
-                right = expr["left"]
+                right = expr if expr["wrapped"] else expr["left"]
                 op = ops.pop()
                 n.append(calculate(left, evaluate(right, scope), op))
                 while len(ops) and (SORTED_OPS[op] < SORTED_OPS[op[-1]]):
@@ -190,6 +190,9 @@ def evaluate(ast, scope=initial):
                     n.append(calculate(left, evaluate(right, scope), op))
             else:
                 n.append(evaluate(expr["left"], scope))
+            if expr["wrapped"]:
+                expr = None
+                break
             ops.append(expr_op)
             expr = expr["right"]
         if expr:
@@ -198,7 +201,6 @@ def evaluate(ast, scope=initial):
                 right = n.pop()
                 left = n.pop()
                 op = ops.pop()
-                print("inside", left, right, op)
                 n.append(calculate(left, right, op))
         while len(n) > 1:
             left = n.pop(0)
