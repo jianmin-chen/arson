@@ -95,7 +95,7 @@ def new_call(args):
 
 
 def new_attr(attr):
-    return {"type": AST_TYPE["Attr"], "args": attr}
+    return {"type": AST_TYPE["Attr"], "name": attr}
 
 
 def new_chain(name, chain):

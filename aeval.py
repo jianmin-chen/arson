@@ -104,7 +104,13 @@ def evaluate(ast, scope=initial):
                 args.append(evaluate(arg, scope))
             local = local(*args)
         elif ast["chain"][0]["type"] == AST_TYPE["Attr"]:
-            local = local._getattr(ast["chain"][0]["args"])
+            local = local._getattr(ast["chain"][0]["name"])
+            if (
+                len(ast["chain"]) == 1 or ast["chain"][1]["type"] != AST_TYPE["Call"]
+            ) and callable(local):
+                local = local()
+        else:
+            local = local._get(evaluate(ast["chain"][0], scope))
             if (
                 len(ast["chain"]) == 1 or ast["chain"][1]["type"] != AST_TYPE["Call"]
             ) and callable(local):
@@ -118,7 +124,15 @@ def evaluate(ast, scope=initial):
                     args.append(evaluate(arg, scope))
                 local = local(*args)
             elif link["type"] == AST_TYPE["Attr"]:
-                local = local._getattr(link["args"])
+                local = local._getattr(link["name"])
+                if (
+                    len(ast["chain"]) != i + 2
+                    and ast["chain"][i + 2]["type"] != AST_TYPE["Call"]
+                    and callable(local)
+                ):
+                    local = local()
+            else:
+                local = local._get(evaluate(link, scope))
                 if (
                     len(ast["chain"]) != i + 2
                     and ast["chain"][i + 2]["type"] != AST_TYPE["Call"]

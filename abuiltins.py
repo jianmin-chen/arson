@@ -6,16 +6,18 @@ from random import randint
 kind = lambda value, kind: value["type"] == AST_TYPE[kind]
 
 
-class Array:
+class Builtin:
+    def _getattr(self, attr):
+        return getattr(self, attr)
+
+
+class Array(Builtin):
     def __init__(self, items):
+        super().__init__()
         self.items = items
 
-    def _getattr(self, token):
-        if kind(token, "Number"):
-            return self.items[int(token["value"])]
-        elif kind(token, "Var"):
-            return getattr(self, token["name"])
-        raise Exception("Expected Number or Var for Attribute but got " + token["type"])
+    def _get(self, index):
+        return self.items[int(index)]
 
     def length(self):
         return len(self.items)
@@ -33,16 +35,13 @@ class Array:
         return pformat(self.items)
 
 
-class Dict:
+class Dict(Builtin):
     def __init__(self, obj):
+        super().__init__()
         self.obj = obj
 
-    def _getattr(self, token):
-        if kind(token, "String"):
-            return self.obj[token["value"]]
-        elif kind(token, "Var"):
-            return getattr(self, token["name"])
-        raise Exception("Expected Number or Var for Attribute but got " + token["type"])
+    def _get(self, key):
+        return self.obj[key]
 
     def update(self, key, value):
         self.obj[key] = value

@@ -41,6 +41,7 @@ TOKEN_TYPE = {
     "New": "New",
     "Range": "Range",
     "Colon": "Colon",
+    "Period": "Period",
 }
 
 KEYWORDS = {
@@ -184,6 +185,8 @@ def scan_token(lexer):
                 lexer.add_token(TOKEN_TYPE["GreaterThan"], ">", ">")
         case ":":
             lexer.add_token(TOKEN_TYPE["Colon"], ":", ":")
+        case ".":
+            lexer.add_token(TOKEN_TYPE["Period"], ".", ".")
         case "#":
             while lexer.peek() != "\n" and lexer.peek() != "\0":
                 lexer.advance()

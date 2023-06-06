@@ -149,9 +149,13 @@ def call(parser):
                 chain.append(new_call(args))
             else:
                 parser.eat(TOKEN_TYPE["LeftBracket"])
-                attr = expr(parser)
+                if parser.peek_token_type() == TOKEN_TYPE["Period"]:
+                    parser.eat(TOKEN_TYPE["Period"])
+                    id = parser.eat(parser.peek_token_type())
+                    chain.append(new_attr(id["value"]))
+                else:
+                    chain.append(expr(parser))
                 parser.eat(TOKEN_TYPE["RightBracket"])
-                chain.append(new_attr(attr))
         return new_chain(res, chain)
     return res
 
