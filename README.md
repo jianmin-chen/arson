@@ -6,6 +6,8 @@ Usage: `python3 arson.py <program>.ars` (yes, I know, `ars`, haha).
 
 **Make sure you have the latest version of Python! I'm using the lovely new keyword `match`.**
 
+Here's a demo (skip towards the end) of me writing a Sudoku puzzle solver in Arson:
+
 [![asciicast](https://asciinema.org/a/590145.svg)](https://asciinema.org/a/590145)
 
 ## Syntax
