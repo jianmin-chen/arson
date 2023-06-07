@@ -1,4 +1,5 @@
 from aast import AST_TYPE
+from copy import deepcopy
 from sys import exit
 from abuiltins import builtins, Array, Dict
 from pprint import pformat
@@ -12,13 +13,14 @@ SORTED_OPS = {
     "+": 0,
     "or": 1,
     "and": 1,
-    "/": 2,
-    "*": 2,
-    "==": 2,
-    ">": 2,
-    "<": 2,
-    ">=": 2,
-    "<=": 2,
+    "/": 1,
+    "*": 1,
+    "%": 1,
+    "==": 1,
+    ">": 1,
+    "<": 1,
+    ">=": 1,
+    "<=": 1,
 }
 
 
@@ -32,7 +34,7 @@ def execute(ast, scope=initial):
     if kind == AST_TYPE["Func"]:
 
         def func(*args):
-            local_scope = scope
+            local_scope = deepcopy(scope)
             for i in range(0, len(ast["args"])):
                 local_scope[ast["args"][i]] = args[i]
             try:
@@ -47,15 +49,6 @@ def execute(ast, scope=initial):
         scope[ast["name"]] = func
     elif kind == AST_TYPE["Var"]:
         scope[ast["name"]] = evaluate(ast["value"], scope)
-    elif kind == AST_TYPE["Class"]:
-        # Create a class
-        class Class(object):
-            pass
-
-        class_copy = Class()
-        # Classes just contain functions, but the difference is that these functions can access class-specific attributes?
-
-        scope[ast["name"]] = class_copy
     elif kind == AST_TYPE["Return"]:
         raise ReturnException(evaluate(ast["value"], scope))
     elif kind == AST_TYPE["If"]:
@@ -124,21 +117,16 @@ def evaluate(ast, scope=initial):
                     args.append(evaluate(arg, scope))
                 local = local(*args)
             elif link["type"] == AST_TYPE["Attr"]:
+                shifted = i + 1
                 local = local._getattr(link["name"])
-                if (
-                    len(ast["chain"]) != i + 2
-                    and ast["chain"][i + 2]["type"] != AST_TYPE["Call"]
-                    and callable(local)
+                # If the next item is a call, we don't want to call it yet; otherwise, call it
+                if callable(local) and (
+                    shifted + 1 >= len(ast["chain"])
+                    or ast["chain"][shifted + 1]["type"] != AST_TYPE["Call"]
                 ):
                     local = local()
             else:
                 local = local._get(evaluate(link, scope))
-                if (
-                    len(ast["chain"]) != i + 2
-                    and ast["chain"][i + 2]["type"] != AST_TYPE["Call"]
-                    and callable(local)
-                ):
-                    local = local()
         if local is not None:
             return local
     elif kind == AST_TYPE["Array"]:
@@ -162,6 +150,8 @@ def evaluate(ast, scope=initial):
                 return left * right
             elif op == "/":
                 return left / right
+            elif op == "%":
+                return left % right
             elif op == "+":
                 return left + right
             elif op == "-":

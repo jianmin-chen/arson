@@ -11,26 +11,23 @@ Usage: `python3 arson.py <program>.ars` (yes, I know, `ars`, haha).
 `/examples/readme/example.ars`:
 
 ```
-burn x = 1  # Variable
+burn x = 0 # Variable
 for i through (0, 10) {
-    burn x = x + 1  # No prefix notation currently
+    burn x = x + 1 # No prefix notation currently
 }
 
-burn time = True
-fire(time)  # => True
+burn y = True
+fire(y) # => True
 
 prepmatch countdown(num) {
     # This is a function. Function declarations start with "prepmatch".
     while (num > 0) {
-        fire(num)  # fire = "print" in every other language
-        burn num = num - 2
+        fire(num) # fire = "print" in every other language
+        burn num = num - 1
     }
 }
 
-countdown(x)  # Countdown back to 0
-
-burn coords = [43.55, 42.55, "hi"]
-fire(coords)
+countdown(x)
 
 prepmatch power(num, exp) {
     # Basic power function
@@ -41,11 +38,14 @@ prepmatch power(num, exp) {
     return res
 }
 
-burn y = power(8, 3)
-fire(y)
-fire(power(8, 2) + (19 - 8) * (10 + 4))
+burn ans = power(8, 3)
+fire(ans) # => 512
+
+# PEMDAS
+fire(power(8, 2) + (19 - 8) * (10 + 4))  # => 218
 
 prepmatch min(a, b) {
+    # This is an example of an if/else statement
     if (a < b) {
         return a
     } else {
@@ -53,29 +53,25 @@ prepmatch min(a, b) {
     }
 }
 
-fire(min(2, -1))
+fire(min(2, -1)) # => -1
 
 burn coords = [43.55, 42.55]
-fire(coords[.length])
-fire(coords[1])
+fire(coords) # => [43.55, 42.55]
+fire(coords[.length]) # => 2
 
 for i through (0, coords[.length]) {
     fire("index: ", i)
     fire(coords[i])
 }
 
-coords[.push](2 * 3)
-fire(coords)
+# Attributes start with . vs. references
 coords[.push](power(8, 2) + (19 - 8) * (10 + 4))
-fire(coords)
-coords[.push](min)
 fire(coords)
 coords[.push]([1, 2])
 fire(coords)
 
-coords[.update](1, "Hello world!")
-coords[5][.update](1, coords[5][1] * 2)
-fire(coords)
+coords[3][.update](1, coords[3][1] * 2)
+fire(coords) # => [43.55, 42.55, 218, [1, 4]]
 
 # What about dictionaries
 burn todo = {
@@ -83,17 +79,15 @@ burn todo = {
     "2": "Clean",
     "3": "Escape"
 }
+
 fire(todo)
 fire(todo["1"])  # => Burn
-todo[.update]("2", [1, 2, {"a": "foo", "b": "bar"}])
-fire("Updated: ", todo)
-fire(todo["2"][2]["b"])
 
-burn test = [1, 1]
-fire(test[0] == test[1])
+todo[.update]("2", [1, 2, {"a": "foo", "b": "bar"}])
+fire(todo["2"][2]["b"])
 ```
 
-Granted, some names don't make sense technically. But all of them revolve around being a pyromaniac, so +1 for that in my humble opinion.
+I probably could have used more arson-related keywords. Or probably inserted a fire emoji here or there. But all of the current keywords revolve around being a pyromaniac, so +1 for that in my humble opinion.
 
 ### Also, it's extensible! 
 

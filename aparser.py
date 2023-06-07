@@ -120,6 +120,7 @@ def is_op(token):
         TOKEN_TYPE["Minus"],
         TOKEN_TYPE["Times"],
         TOKEN_TYPE["Divide"],
+        TOKEN_TYPE["Modulo"],
         TOKEN_TYPE["LessThan"],
         TOKEN_TYPE["LessThanOrEqual"],
         TOKEN_TYPE["GreaterThan"],

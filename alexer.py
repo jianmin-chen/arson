@@ -30,6 +30,7 @@ TOKEN_TYPE = {
     "Minus": "Minus",
     "Times": "Times",
     "Divide": "Divide",
+    "Modulo": "Modulo",
     "Equal": "Equal",
     "Equality": "Equality",
     "LessThan": "LessThan",
@@ -161,6 +162,8 @@ def scan_token(lexer):
             lexer.add_token(TOKEN_TYPE["Times"], "*", "*")
         case "/":
             lexer.add_token(TOKEN_TYPE["Divide"], "/", "/")
+        case "%":
+            lexer.add_token(TOKEN_TYPE["Modulo"], "%", "%")
         case "=":
             if lexer.peek() == "=":
                 lexer.advance()

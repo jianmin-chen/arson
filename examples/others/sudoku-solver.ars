@@ -12,18 +12,20 @@ burn sudokuGrid = [
 ]
 
 prepmatch printGrid(grid) {
-    for i through (0, grid[length]) {
+    for i through (0, grid[.length]) {
         burn row = grid[i]
-        for j through (0, row[length]) {
+        burn rowStr = ""
+        for j through (0, row[.length]) {
             burn num = row[j]
-            fire(num, " ")
+            burn rowStr = rowStr + str(int(num)) + " " 
         }
+        fire(rowStr)
     }
     fire()
 }
 
 prepmatch usedRow(grid, row, num) {
-    for i through (0, grid[row][length]) {
+    for i through (0, grid[row][.length]) {
         burn curr = grid[row][i]
         if (curr == num) {
             return True
@@ -33,7 +35,7 @@ prepmatch usedRow(grid, row, num) {
 }
 
 prepmatch usedColumn(grid, column, num) {
-    for i through (0, grid[length]) {
+    for i through (0, grid[.length]) {
         burn row = grid[i]
         if (row[column] == num) {
             return True
@@ -57,17 +59,17 @@ prepmatch isSafe(grid, row, column, num) {
     burn rowUsed = usedRow(grid, row, num)
     burn columnUsed = usedColumn(grid, column, num)
     burn boxUsed = usedBox(grid, row - row % 3, column - column % 3, num)
-    if (rowUsed == False and columnUsed == False and boxUsed == False) {
+    if ((rowUsed == False) and (columnUsed == False) and (boxUsed == False)) {
         return True
     }
     return False
 }
 
 prepmatch emptySquare(grid) {
-    for i through (0, grid[length]) {
-        for j through (0, grid[i][length]) {
+    for i through (0, grid[.length]) {
+        for j through (0, grid[i][.length]) {
             if (grid[i][j] == 0) {
-                return [row, col]
+                return [i, j]
             }
         }
     }
@@ -76,7 +78,7 @@ prepmatch emptySquare(grid) {
 
 prepmatch solve(grid) {
     # The heart of the code - this is a recursive function
-    if (emtpySquare(grid) == False) {
+    if (emptySquare(grid) == False) {
         # If there are no more empty squares
         return True
     }
@@ -86,12 +88,12 @@ prepmatch solve(grid) {
     for num through (1, 10) {
         # Test all numbers 1 - 9
         if (isSafe(grid, row, col, num)) {
-            grid[row].update(col, num)
+            grid[row][.update](col, num)
             if (solve(grid)) {
                 # Recursively run solve() again; if the final result returns True, then grid has been solved
                 return True
             }
-            grid[row].update(col, 0)  # Otherwise, we need to backtrack - we're still in the original function, so we reset it back to 0
+            grid[row][.update](col, 0) # Otherwise, we need to backtrack - we're still in the original function, so we reset it back to 0
         }
     }
     return False

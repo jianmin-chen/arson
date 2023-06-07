@@ -29,7 +29,9 @@ class Array(Builtin):
         self.items[int(index)] = value
 
     def __eq__(self, other):
-        return self.items == other.items
+        if isinstance(other, Array):
+            return self.items == other.items
+        return self.items == other
 
     def __repr__(self):
         return pformat(self.items)

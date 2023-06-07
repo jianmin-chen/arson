@@ -18,7 +18,7 @@ prepmatch guessingGame(min, max, tries) {
         }
         burn lives = lives - 1
     }
-    fire("You lost! The number was", num)
+    fire("You lost! The number was ", num)
 }
 
 guessingGame(min, max, tries)
