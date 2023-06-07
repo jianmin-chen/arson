@@ -94,19 +94,16 @@ I probably could have used more arson-related keywords. Or probably inserted a f
 Okay, what I mean is that you can create your own files of "builtins", I suppose, that you write in Python. For example, this is a snippet from `abuiltins.py`, which contains the code for the class `Dict`:
 
 ```python
-class Dict:
+class Dict(Builtin):
     def __init__(self, obj):
+        super().__init__()
         self.obj = obj
 
-    def _getattr(self, token):
+    def _get(self, key):
         """
-            Every builtin class has a _getattr "private" method.
+            Every builtin class has a _get "private" method.
         """
-        if kind(token, "String"):
-            return self.obj[token["value"]]
-        elif kind(token, "Var"):
-            return getattr(self, token["name"])
-        raise Exception("Expected Number or Var for Attribute but got " + token["type"])
+        return self.obj[key]
 
     def update(self, key, value):
         self.obj[key] = value
