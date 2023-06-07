@@ -77,33 +77,33 @@ prepmatch emptySquare(grid) {
 }
 
 prepmatch solve(grid) {
-    # The heart of the code - this is a recursive function
-    if (emptySquare(grid) == False) {
-        # If there are no more empty squares
-        return True
-    }
-    burn pos = emptySquare(grid)
-    burn row = pos[0]
-    burn col = pos[1]
-    for num through (1, 10) {
-        # Test all numbers 1 - 9
-        if (isSafe(grid, row, col, num)) {
-            grid[row][.update](col, num)
-            if (solve(grid)) {
-                # Recursively run solve() again; if the final result returns True, then grid has been solved
-                return True
-            }
-            grid[row][.update](col, 0) # Otherwise, we need to backtrack - we're still in the original function, so we reset it back to 0
-        }
-    }
-    return False
+	# The heart of the code - this is a recursive function
+	if (emptySquare(grid) == False) {
+		# If there are no more empty squares
+		return True
+	}
+	burn pos = emptySquare(grid)
+	burn row = pos[0]
+	burn col = pos[1]
+	for num through (1, 10) {
+		# Test all numbers 1 - 9
+		if (isSafe(grid, row, col, num)) {
+			grid[row][.update](col, num)
+			if (solve(grid)) {
+				# Recursively run solve() again; if the final result returns True, then grid has been solved
+				return True
+			}
+			grid[row][.update](col, 0) # Otherwise, we need to backtrack - we're still in the original function, so we reset it back to 0
+		}
+	}
+	return False
 }
 
 fire("Sudoku grid unsolved:")
 printGrid(sudokuGrid)
 if (solve(sudokuGrid)) {
-    fire("Sudoku grid solved:")
-    printGrid(sudokuGrid)
+	fire("Sudoku grid solved:")
+	printGrid(sudokuGrid)
 } else {
-    fire("No solution found.")
-}
+	fire("No solution found.")
+}	
