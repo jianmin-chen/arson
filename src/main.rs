@@ -7,8 +7,8 @@ mod builtins;
 mod lexer;
 mod parser;
 
-use lexer::{scan_tokens, Lexer, TokenType};
-use parser::Parser;
+use lexer::{scan_tokens, Lexer};
+use parser::{program, Parser};
 
 const OUTPUT_TO_FILE: bool = true;
 
@@ -43,6 +43,12 @@ fn main() {
             }
             let mut parser = Parser::new(lexer.tokens);
             println!("{:?}", parser.peek_token_type().unwrap());
+            let ast = program(&mut parser);
+            if OUTPUT_TO_FILE {
+                let output = format!("{:#?}", ast);
+                write_file("./parser.out", &output);
+            }
+            // run(ast)
         }
         Err(e) => panic!("Failed to read file: {}", e),
     }

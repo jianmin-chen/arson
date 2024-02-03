@@ -66,7 +66,7 @@ pub fn keywords() -> HashMap<&'static str, TokenType> {
     return keywords;
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct Token {
     pub kind: TokenType,
     pub value: String,
@@ -214,7 +214,7 @@ pub fn scan_token(lexer: &mut Lexer) {
                     String::from("<="),
                 );
             } else {
-                lexer.add_token(TokenType::LessThan, String::from("<"), String::from("<"));
+                lexer.add_token(TokenType::Equal, String::from("="), String::from("="));
             }
         }
         '"' => string('"', lexer),

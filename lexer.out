@@ -10,9 +10,9 @@
         content: "x",
     },
     Token {
-        kind: LessThan,
-        value: "<",
-        content: "<",
+        kind: Equal,
+        value: "=",
+        content: "=",
     },
     Token {
         kind: Number,
@@ -75,9 +75,9 @@
         content: "x",
     },
     Token {
-        kind: LessThan,
-        value: "<",
-        content: "<",
+        kind: Equal,
+        value: "=",
+        content: "=",
     },
     Token {
         kind: Word,
@@ -110,9 +110,9 @@
         content: "time",
     },
     Token {
-        kind: LessThan,
-        value: "<",
-        content: "<",
+        kind: Equal,
+        value: "=",
+        content: "=",
     },
     Token {
         kind: True,
@@ -235,9 +235,9 @@
         content: "num",
     },
     Token {
-        kind: LessThan,
-        value: "<",
-        content: "<",
+        kind: Equal,
+        value: "=",
+        content: "=",
     },
     Token {
         kind: Word,
@@ -295,9 +295,9 @@
         content: "coords",
     },
     Token {
-        kind: LessThan,
-        value: "<",
-        content: "<",
+        kind: Equal,
+        value: "=",
+        content: "=",
     },
     Token {
         kind: LeftBracket,
@@ -405,9 +405,9 @@
         content: "res",
     },
     Token {
-        kind: LessThan,
-        value: "<",
-        content: "<",
+        kind: Equal,
+        value: "=",
+        content: "=",
     },
     Token {
         kind: Number,
@@ -470,9 +470,9 @@
         content: "res",
     },
     Token {
-        kind: LessThan,
-        value: "<",
-        content: "<",
+        kind: Equal,
+        value: "=",
+        content: "=",
     },
     Token {
         kind: Word,
@@ -520,9 +520,9 @@
         content: "y",
     },
     Token {
-        kind: LessThan,
-        value: "<",
-        content: "<",
+        kind: Equal,
+        value: "=",
+        content: "=",
     },
     Token {
         kind: Word,
@@ -860,9 +860,9 @@
         content: "coords",
     },
     Token {
-        kind: LessThan,
-        value: "<",
-        content: "<",
+        kind: Equal,
+        value: "=",
+        content: "=",
     },
     Token {
         kind: LeftBracket,
@@ -1640,9 +1640,9 @@
         content: "todo",
     },
     Token {
-        kind: LessThan,
-        value: "<",
-        content: "<",
+        kind: Equal,
+        value: "=",
+        content: "=",
     },
     Token {
         kind: LeftBrace,
@@ -1990,9 +1990,9 @@
         content: "test",
     },
     Token {
-        kind: LessThan,
-        value: "<",
-        content: "<",
+        kind: Equal,
+        value: "=",
+        content: "=",
     },
     Token {
         kind: LeftBracket,
