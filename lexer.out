@@ -1,0 +1,2087 @@
+[
+    Token {
+        kind: Var,
+        value: "burn",
+        content: "burn",
+    },
+    Token {
+        kind: Word,
+        value: "x",
+        content: "x",
+    },
+    Token {
+        kind: LessThan,
+        value: "<",
+        content: "<",
+    },
+    Token {
+        kind: Number,
+        value: "1",
+        content: "1",
+    },
+    Token {
+        kind: For,
+        value: "for",
+        content: "for",
+    },
+    Token {
+        kind: Word,
+        value: "i",
+        content: "i",
+    },
+    Token {
+        kind: Range,
+        value: "through",
+        content: "through",
+    },
+    Token {
+        kind: LeftParen,
+        value: "(",
+        content: "(",
+    },
+    Token {
+        kind: Number,
+        value: "0",
+        content: "0",
+    },
+    Token {
+        kind: Comma,
+        value: ",",
+        content: ",",
+    },
+    Token {
+        kind: Number,
+        value: "10",
+        content: "10",
+    },
+    Token {
+        kind: RightParen,
+        value: ")",
+        content: ")",
+    },
+    Token {
+        kind: LeftBrace,
+        value: "{",
+        content: "{",
+    },
+    Token {
+        kind: Var,
+        value: "burn",
+        content: "burn",
+    },
+    Token {
+        kind: Word,
+        value: "x",
+        content: "x",
+    },
+    Token {
+        kind: LessThan,
+        value: "<",
+        content: "<",
+    },
+    Token {
+        kind: Word,
+        value: "x",
+        content: "x",
+    },
+    Token {
+        kind: Plus,
+        value: "+",
+        content: "+",
+    },
+    Token {
+        kind: Number,
+        value: "1",
+        content: "1",
+    },
+    Token {
+        kind: RightBrace,
+        value: "}",
+        content: "}",
+    },
+    Token {
+        kind: Var,
+        value: "burn",
+        content: "burn",
+    },
+    Token {
+        kind: Word,
+        value: "time",
+        content: "time",
+    },
+    Token {
+        kind: LessThan,
+        value: "<",
+        content: "<",
+    },
+    Token {
+        kind: True,
+        value: "True",
+        content: "True",
+    },
+    Token {
+        kind: Word,
+        value: "fire",
+        content: "fire",
+    },
+    Token {
+        kind: LeftParen,
+        value: "(",
+        content: "(",
+    },
+    Token {
+        kind: Word,
+        value: "time",
+        content: "time",
+    },
+    Token {
+        kind: RightParen,
+        value: ")",
+        content: ")",
+    },
+    Token {
+        kind: Func,
+        value: "prepmatch",
+        content: "prepmatch",
+    },
+    Token {
+        kind: Word,
+        value: "countdown",
+        content: "countdown",
+    },
+    Token {
+        kind: LeftParen,
+        value: "(",
+        content: "(",
+    },
+    Token {
+        kind: Word,
+        value: "num",
+        content: "num",
+    },
+    Token {
+        kind: RightParen,
+        value: ")",
+        content: ")",
+    },
+    Token {
+        kind: LeftBrace,
+        value: "{",
+        content: "{",
+    },
+    Token {
+        kind: While,
+        value: "while",
+        content: "while",
+    },
+    Token {
+        kind: LeftParen,
+        value: "(",
+        content: "(",
+    },
+    Token {
+        kind: Word,
+        value: "num",
+        content: "num",
+    },
+    Token {
+        kind: GreaterThan,
+        value: ">",
+        content: ">",
+    },
+    Token {
+        kind: Number,
+        value: "0",
+        content: "0",
+    },
+    Token {
+        kind: RightParen,
+        value: ")",
+        content: ")",
+    },
+    Token {
+        kind: LeftBrace,
+        value: "{",
+        content: "{",
+    },
+    Token {
+        kind: Word,
+        value: "fire",
+        content: "fire",
+    },
+    Token {
+        kind: LeftParen,
+        value: "(",
+        content: "(",
+    },
+    Token {
+        kind: Word,
+        value: "num",
+        content: "num",
+    },
+    Token {
+        kind: RightParen,
+        value: ")",
+        content: ")",
+    },
+    Token {
+        kind: Var,
+        value: "burn",
+        content: "burn",
+    },
+    Token {
+        kind: Word,
+        value: "num",
+        content: "num",
+    },
+    Token {
+        kind: LessThan,
+        value: "<",
+        content: "<",
+    },
+    Token {
+        kind: Word,
+        value: "num",
+        content: "num",
+    },
+    Token {
+        kind: Minus,
+        value: "-",
+        content: "-",
+    },
+    Token {
+        kind: Number,
+        value: "2",
+        content: "2",
+    },
+    Token {
+        kind: RightBrace,
+        value: "}",
+        content: "}",
+    },
+    Token {
+        kind: RightBrace,
+        value: "}",
+        content: "}",
+    },
+    Token {
+        kind: Word,
+        value: "countdown",
+        content: "countdown",
+    },
+    Token {
+        kind: LeftParen,
+        value: "(",
+        content: "(",
+    },
+    Token {
+        kind: Word,
+        value: "x",
+        content: "x",
+    },
+    Token {
+        kind: RightParen,
+        value: ")",
+        content: ")",
+    },
+    Token {
+        kind: Var,
+        value: "burn",
+        content: "burn",
+    },
+    Token {
+        kind: Word,
+        value: "coords",
+        content: "coords",
+    },
+    Token {
+        kind: LessThan,
+        value: "<",
+        content: "<",
+    },
+    Token {
+        kind: LeftBracket,
+        value: "[",
+        content: "[",
+    },
+    Token {
+        kind: Number,
+        value: "43.55",
+        content: "43.55",
+    },
+    Token {
+        kind: Comma,
+        value: ",",
+        content: ",",
+    },
+    Token {
+        kind: Number,
+        value: "42.55",
+        content: "42.55",
+    },
+    Token {
+        kind: Comma,
+        value: ",",
+        content: ",",
+    },
+    Token {
+        kind: String,
+        value: "hi",
+        content: "hi",
+    },
+    Token {
+        kind: RightBracket,
+        value: "]",
+        content: "]",
+    },
+    Token {
+        kind: Word,
+        value: "fire",
+        content: "fire",
+    },
+    Token {
+        kind: LeftParen,
+        value: "(",
+        content: "(",
+    },
+    Token {
+        kind: Word,
+        value: "coords",
+        content: "coords",
+    },
+    Token {
+        kind: RightParen,
+        value: ")",
+        content: ")",
+    },
+    Token {
+        kind: Func,
+        value: "prepmatch",
+        content: "prepmatch",
+    },
+    Token {
+        kind: Word,
+        value: "power",
+        content: "power",
+    },
+    Token {
+        kind: LeftParen,
+        value: "(",
+        content: "(",
+    },
+    Token {
+        kind: Word,
+        value: "num",
+        content: "num",
+    },
+    Token {
+        kind: Comma,
+        value: ",",
+        content: ",",
+    },
+    Token {
+        kind: Word,
+        value: "exp",
+        content: "exp",
+    },
+    Token {
+        kind: RightParen,
+        value: ")",
+        content: ")",
+    },
+    Token {
+        kind: LeftBrace,
+        value: "{",
+        content: "{",
+    },
+    Token {
+        kind: Var,
+        value: "burn",
+        content: "burn",
+    },
+    Token {
+        kind: Word,
+        value: "res",
+        content: "res",
+    },
+    Token {
+        kind: LessThan,
+        value: "<",
+        content: "<",
+    },
+    Token {
+        kind: Number,
+        value: "1",
+        content: "1",
+    },
+    Token {
+        kind: For,
+        value: "for",
+        content: "for",
+    },
+    Token {
+        kind: Word,
+        value: "i",
+        content: "i",
+    },
+    Token {
+        kind: Range,
+        value: "through",
+        content: "through",
+    },
+    Token {
+        kind: LeftParen,
+        value: "(",
+        content: "(",
+    },
+    Token {
+        kind: Number,
+        value: "0",
+        content: "0",
+    },
+    Token {
+        kind: Comma,
+        value: ",",
+        content: ",",
+    },
+    Token {
+        kind: Word,
+        value: "exp",
+        content: "exp",
+    },
+    Token {
+        kind: RightParen,
+        value: ")",
+        content: ")",
+    },
+    Token {
+        kind: LeftBrace,
+        value: "{",
+        content: "{",
+    },
+    Token {
+        kind: Var,
+        value: "burn",
+        content: "burn",
+    },
+    Token {
+        kind: Word,
+        value: "res",
+        content: "res",
+    },
+    Token {
+        kind: LessThan,
+        value: "<",
+        content: "<",
+    },
+    Token {
+        kind: Word,
+        value: "res",
+        content: "res",
+    },
+    Token {
+        kind: Times,
+        value: "*",
+        content: "*",
+    },
+    Token {
+        kind: Word,
+        value: "num",
+        content: "num",
+    },
+    Token {
+        kind: RightBrace,
+        value: "}",
+        content: "}",
+    },
+    Token {
+        kind: Return,
+        value: "return",
+        content: "return",
+    },
+    Token {
+        kind: Word,
+        value: "res",
+        content: "res",
+    },
+    Token {
+        kind: RightBrace,
+        value: "}",
+        content: "}",
+    },
+    Token {
+        kind: Var,
+        value: "burn",
+        content: "burn",
+    },
+    Token {
+        kind: Word,
+        value: "y",
+        content: "y",
+    },
+    Token {
+        kind: LessThan,
+        value: "<",
+        content: "<",
+    },
+    Token {
+        kind: Word,
+        value: "power",
+        content: "power",
+    },
+    Token {
+        kind: LeftParen,
+        value: "(",
+        content: "(",
+    },
+    Token {
+        kind: Number,
+        value: "8",
+        content: "8",
+    },
+    Token {
+        kind: Comma,
+        value: ",",
+        content: ",",
+    },
+    Token {
+        kind: Number,
+        value: "3",
+        content: "3",
+    },
+    Token {
+        kind: RightParen,
+        value: ")",
+        content: ")",
+    },
+    Token {
+        kind: Word,
+        value: "fire",
+        content: "fire",
+    },
+    Token {
+        kind: LeftParen,
+        value: "(",
+        content: "(",
+    },
+    Token {
+        kind: Word,
+        value: "y",
+        content: "y",
+    },
+    Token {
+        kind: RightParen,
+        value: ")",
+        content: ")",
+    },
+    Token {
+        kind: Word,
+        value: "fire",
+        content: "fire",
+    },
+    Token {
+        kind: LeftParen,
+        value: "(",
+        content: "(",
+    },
+    Token {
+        kind: Word,
+        value: "power",
+        content: "power",
+    },
+    Token {
+        kind: LeftParen,
+        value: "(",
+        content: "(",
+    },
+    Token {
+        kind: Number,
+        value: "8",
+        content: "8",
+    },
+    Token {
+        kind: Comma,
+        value: ",",
+        content: ",",
+    },
+    Token {
+        kind: Number,
+        value: "2",
+        content: "2",
+    },
+    Token {
+        kind: RightParen,
+        value: ")",
+        content: ")",
+    },
+    Token {
+        kind: Plus,
+        value: "+",
+        content: "+",
+    },
+    Token {
+        kind: LeftParen,
+        value: "(",
+        content: "(",
+    },
+    Token {
+        kind: Number,
+        value: "19",
+        content: "19",
+    },
+    Token {
+        kind: Minus,
+        value: "-",
+        content: "-",
+    },
+    Token {
+        kind: Number,
+        value: "8",
+        content: "8",
+    },
+    Token {
+        kind: RightParen,
+        value: ")",
+        content: ")",
+    },
+    Token {
+        kind: Times,
+        value: "*",
+        content: "*",
+    },
+    Token {
+        kind: LeftParen,
+        value: "(",
+        content: "(",
+    },
+    Token {
+        kind: Number,
+        value: "10",
+        content: "10",
+    },
+    Token {
+        kind: Plus,
+        value: "+",
+        content: "+",
+    },
+    Token {
+        kind: Number,
+        value: "4",
+        content: "4",
+    },
+    Token {
+        kind: RightParen,
+        value: ")",
+        content: ")",
+    },
+    Token {
+        kind: RightParen,
+        value: ")",
+        content: ")",
+    },
+    Token {
+        kind: Func,
+        value: "prepmatch",
+        content: "prepmatch",
+    },
+    Token {
+        kind: Word,
+        value: "min",
+        content: "min",
+    },
+    Token {
+        kind: LeftParen,
+        value: "(",
+        content: "(",
+    },
+    Token {
+        kind: Word,
+        value: "a",
+        content: "a",
+    },
+    Token {
+        kind: Comma,
+        value: ",",
+        content: ",",
+    },
+    Token {
+        kind: Word,
+        value: "b",
+        content: "b",
+    },
+    Token {
+        kind: RightParen,
+        value: ")",
+        content: ")",
+    },
+    Token {
+        kind: LeftBrace,
+        value: "{",
+        content: "{",
+    },
+    Token {
+        kind: If,
+        value: "if",
+        content: "if",
+    },
+    Token {
+        kind: LeftParen,
+        value: "(",
+        content: "(",
+    },
+    Token {
+        kind: Word,
+        value: "a",
+        content: "a",
+    },
+    Token {
+        kind: LessThan,
+        value: "<",
+        content: "<",
+    },
+    Token {
+        kind: Word,
+        value: "b",
+        content: "b",
+    },
+    Token {
+        kind: RightParen,
+        value: ")",
+        content: ")",
+    },
+    Token {
+        kind: LeftBrace,
+        value: "{",
+        content: "{",
+    },
+    Token {
+        kind: Return,
+        value: "return",
+        content: "return",
+    },
+    Token {
+        kind: Word,
+        value: "a",
+        content: "a",
+    },
+    Token {
+        kind: RightBrace,
+        value: "}",
+        content: "}",
+    },
+    Token {
+        kind: Else,
+        value: "else",
+        content: "else",
+    },
+    Token {
+        kind: LeftBrace,
+        value: "{",
+        content: "{",
+    },
+    Token {
+        kind: Return,
+        value: "return",
+        content: "return",
+    },
+    Token {
+        kind: Word,
+        value: "b",
+        content: "b",
+    },
+    Token {
+        kind: RightBrace,
+        value: "}",
+        content: "}",
+    },
+    Token {
+        kind: RightBrace,
+        value: "}",
+        content: "}",
+    },
+    Token {
+        kind: Word,
+        value: "fire",
+        content: "fire",
+    },
+    Token {
+        kind: LeftParen,
+        value: "(",
+        content: "(",
+    },
+    Token {
+        kind: Word,
+        value: "min",
+        content: "min",
+    },
+    Token {
+        kind: LeftParen,
+        value: "(",
+        content: "(",
+    },
+    Token {
+        kind: Number,
+        value: "2",
+        content: "2",
+    },
+    Token {
+        kind: Comma,
+        value: ",",
+        content: ",",
+    },
+    Token {
+        kind: Minus,
+        value: "-",
+        content: "-",
+    },
+    Token {
+        kind: Number,
+        value: "1",
+        content: "1",
+    },
+    Token {
+        kind: RightParen,
+        value: ")",
+        content: ")",
+    },
+    Token {
+        kind: RightParen,
+        value: ")",
+        content: ")",
+    },
+    Token {
+        kind: Var,
+        value: "burn",
+        content: "burn",
+    },
+    Token {
+        kind: Word,
+        value: "coords",
+        content: "coords",
+    },
+    Token {
+        kind: LessThan,
+        value: "<",
+        content: "<",
+    },
+    Token {
+        kind: LeftBracket,
+        value: "[",
+        content: "[",
+    },
+    Token {
+        kind: Number,
+        value: "43.55",
+        content: "43.55",
+    },
+    Token {
+        kind: Comma,
+        value: ",",
+        content: ",",
+    },
+    Token {
+        kind: Number,
+        value: "42.55",
+        content: "42.55",
+    },
+    Token {
+        kind: RightBracket,
+        value: "]",
+        content: "]",
+    },
+    Token {
+        kind: Word,
+        value: "fire",
+        content: "fire",
+    },
+    Token {
+        kind: LeftParen,
+        value: "(",
+        content: "(",
+    },
+    Token {
+        kind: Word,
+        value: "coords",
+        content: "coords",
+    },
+    Token {
+        kind: LeftBracket,
+        value: "[",
+        content: "[",
+    },
+    Token {
+        kind: Period,
+        value: ".",
+        content: ".",
+    },
+    Token {
+        kind: Word,
+        value: "length",
+        content: "length",
+    },
+    Token {
+        kind: RightBracket,
+        value: "]",
+        content: "]",
+    },
+    Token {
+        kind: RightParen,
+        value: ")",
+        content: ")",
+    },
+    Token {
+        kind: Word,
+        value: "fire",
+        content: "fire",
+    },
+    Token {
+        kind: LeftParen,
+        value: "(",
+        content: "(",
+    },
+    Token {
+        kind: Word,
+        value: "coords",
+        content: "coords",
+    },
+    Token {
+        kind: LeftBracket,
+        value: "[",
+        content: "[",
+    },
+    Token {
+        kind: Number,
+        value: "1",
+        content: "1",
+    },
+    Token {
+        kind: RightBracket,
+        value: "]",
+        content: "]",
+    },
+    Token {
+        kind: RightParen,
+        value: ")",
+        content: ")",
+    },
+    Token {
+        kind: For,
+        value: "for",
+        content: "for",
+    },
+    Token {
+        kind: Word,
+        value: "i",
+        content: "i",
+    },
+    Token {
+        kind: Range,
+        value: "through",
+        content: "through",
+    },
+    Token {
+        kind: LeftParen,
+        value: "(",
+        content: "(",
+    },
+    Token {
+        kind: Number,
+        value: "0",
+        content: "0",
+    },
+    Token {
+        kind: Comma,
+        value: ",",
+        content: ",",
+    },
+    Token {
+        kind: Word,
+        value: "coords",
+        content: "coords",
+    },
+    Token {
+        kind: LeftBracket,
+        value: "[",
+        content: "[",
+    },
+    Token {
+        kind: Period,
+        value: ".",
+        content: ".",
+    },
+    Token {
+        kind: Word,
+        value: "length",
+        content: "length",
+    },
+    Token {
+        kind: RightBracket,
+        value: "]",
+        content: "]",
+    },
+    Token {
+        kind: RightParen,
+        value: ")",
+        content: ")",
+    },
+    Token {
+        kind: LeftBrace,
+        value: "{",
+        content: "{",
+    },
+    Token {
+        kind: Word,
+        value: "fire",
+        content: "fire",
+    },
+    Token {
+        kind: LeftParen,
+        value: "(",
+        content: "(",
+    },
+    Token {
+        kind: String,
+        value: "index: ",
+        content: "index: ",
+    },
+    Token {
+        kind: Comma,
+        value: ",",
+        content: ",",
+    },
+    Token {
+        kind: Word,
+        value: "i",
+        content: "i",
+    },
+    Token {
+        kind: RightParen,
+        value: ")",
+        content: ")",
+    },
+    Token {
+        kind: Word,
+        value: "fire",
+        content: "fire",
+    },
+    Token {
+        kind: LeftParen,
+        value: "(",
+        content: "(",
+    },
+    Token {
+        kind: Word,
+        value: "coords",
+        content: "coords",
+    },
+    Token {
+        kind: LeftBracket,
+        value: "[",
+        content: "[",
+    },
+    Token {
+        kind: Word,
+        value: "i",
+        content: "i",
+    },
+    Token {
+        kind: RightBracket,
+        value: "]",
+        content: "]",
+    },
+    Token {
+        kind: RightParen,
+        value: ")",
+        content: ")",
+    },
+    Token {
+        kind: RightBrace,
+        value: "}",
+        content: "}",
+    },
+    Token {
+        kind: Word,
+        value: "coords",
+        content: "coords",
+    },
+    Token {
+        kind: LeftBracket,
+        value: "[",
+        content: "[",
+    },
+    Token {
+        kind: Period,
+        value: ".",
+        content: ".",
+    },
+    Token {
+        kind: Word,
+        value: "push",
+        content: "push",
+    },
+    Token {
+        kind: RightBracket,
+        value: "]",
+        content: "]",
+    },
+    Token {
+        kind: LeftParen,
+        value: "(",
+        content: "(",
+    },
+    Token {
+        kind: Number,
+        value: "2",
+        content: "2",
+    },
+    Token {
+        kind: Times,
+        value: "*",
+        content: "*",
+    },
+    Token {
+        kind: Number,
+        value: "3",
+        content: "3",
+    },
+    Token {
+        kind: RightParen,
+        value: ")",
+        content: ")",
+    },
+    Token {
+        kind: Word,
+        value: "fire",
+        content: "fire",
+    },
+    Token {
+        kind: LeftParen,
+        value: "(",
+        content: "(",
+    },
+    Token {
+        kind: Word,
+        value: "coords",
+        content: "coords",
+    },
+    Token {
+        kind: RightParen,
+        value: ")",
+        content: ")",
+    },
+    Token {
+        kind: Word,
+        value: "coords",
+        content: "coords",
+    },
+    Token {
+        kind: LeftBracket,
+        value: "[",
+        content: "[",
+    },
+    Token {
+        kind: Period,
+        value: ".",
+        content: ".",
+    },
+    Token {
+        kind: Word,
+        value: "push",
+        content: "push",
+    },
+    Token {
+        kind: RightBracket,
+        value: "]",
+        content: "]",
+    },
+    Token {
+        kind: LeftParen,
+        value: "(",
+        content: "(",
+    },
+    Token {
+        kind: Word,
+        value: "power",
+        content: "power",
+    },
+    Token {
+        kind: LeftParen,
+        value: "(",
+        content: "(",
+    },
+    Token {
+        kind: Number,
+        value: "8",
+        content: "8",
+    },
+    Token {
+        kind: Comma,
+        value: ",",
+        content: ",",
+    },
+    Token {
+        kind: Number,
+        value: "2",
+        content: "2",
+    },
+    Token {
+        kind: RightParen,
+        value: ")",
+        content: ")",
+    },
+    Token {
+        kind: Plus,
+        value: "+",
+        content: "+",
+    },
+    Token {
+        kind: LeftParen,
+        value: "(",
+        content: "(",
+    },
+    Token {
+        kind: Number,
+        value: "19",
+        content: "19",
+    },
+    Token {
+        kind: Minus,
+        value: "-",
+        content: "-",
+    },
+    Token {
+        kind: Number,
+        value: "8",
+        content: "8",
+    },
+    Token {
+        kind: RightParen,
+        value: ")",
+        content: ")",
+    },
+    Token {
+        kind: Times,
+        value: "*",
+        content: "*",
+    },
+    Token {
+        kind: LeftParen,
+        value: "(",
+        content: "(",
+    },
+    Token {
+        kind: Number,
+        value: "10",
+        content: "10",
+    },
+    Token {
+        kind: Plus,
+        value: "+",
+        content: "+",
+    },
+    Token {
+        kind: Number,
+        value: "4",
+        content: "4",
+    },
+    Token {
+        kind: RightParen,
+        value: ")",
+        content: ")",
+    },
+    Token {
+        kind: RightParen,
+        value: ")",
+        content: ")",
+    },
+    Token {
+        kind: Word,
+        value: "fire",
+        content: "fire",
+    },
+    Token {
+        kind: LeftParen,
+        value: "(",
+        content: "(",
+    },
+    Token {
+        kind: Word,
+        value: "coords",
+        content: "coords",
+    },
+    Token {
+        kind: RightParen,
+        value: ")",
+        content: ")",
+    },
+    Token {
+        kind: Word,
+        value: "coords",
+        content: "coords",
+    },
+    Token {
+        kind: LeftBracket,
+        value: "[",
+        content: "[",
+    },
+    Token {
+        kind: Period,
+        value: ".",
+        content: ".",
+    },
+    Token {
+        kind: Word,
+        value: "push",
+        content: "push",
+    },
+    Token {
+        kind: RightBracket,
+        value: "]",
+        content: "]",
+    },
+    Token {
+        kind: LeftParen,
+        value: "(",
+        content: "(",
+    },
+    Token {
+        kind: Word,
+        value: "min",
+        content: "min",
+    },
+    Token {
+        kind: RightParen,
+        value: ")",
+        content: ")",
+    },
+    Token {
+        kind: Word,
+        value: "fire",
+        content: "fire",
+    },
+    Token {
+        kind: LeftParen,
+        value: "(",
+        content: "(",
+    },
+    Token {
+        kind: Word,
+        value: "coords",
+        content: "coords",
+    },
+    Token {
+        kind: RightParen,
+        value: ")",
+        content: ")",
+    },
+    Token {
+        kind: Word,
+        value: "coords",
+        content: "coords",
+    },
+    Token {
+        kind: LeftBracket,
+        value: "[",
+        content: "[",
+    },
+    Token {
+        kind: Period,
+        value: ".",
+        content: ".",
+    },
+    Token {
+        kind: Word,
+        value: "push",
+        content: "push",
+    },
+    Token {
+        kind: RightBracket,
+        value: "]",
+        content: "]",
+    },
+    Token {
+        kind: LeftParen,
+        value: "(",
+        content: "(",
+    },
+    Token {
+        kind: LeftBracket,
+        value: "[",
+        content: "[",
+    },
+    Token {
+        kind: Number,
+        value: "1",
+        content: "1",
+    },
+    Token {
+        kind: Comma,
+        value: ",",
+        content: ",",
+    },
+    Token {
+        kind: Number,
+        value: "2",
+        content: "2",
+    },
+    Token {
+        kind: RightBracket,
+        value: "]",
+        content: "]",
+    },
+    Token {
+        kind: RightParen,
+        value: ")",
+        content: ")",
+    },
+    Token {
+        kind: Word,
+        value: "fire",
+        content: "fire",
+    },
+    Token {
+        kind: LeftParen,
+        value: "(",
+        content: "(",
+    },
+    Token {
+        kind: Word,
+        value: "coords",
+        content: "coords",
+    },
+    Token {
+        kind: RightParen,
+        value: ")",
+        content: ")",
+    },
+    Token {
+        kind: Word,
+        value: "coords",
+        content: "coords",
+    },
+    Token {
+        kind: LeftBracket,
+        value: "[",
+        content: "[",
+    },
+    Token {
+        kind: Period,
+        value: ".",
+        content: ".",
+    },
+    Token {
+        kind: Word,
+        value: "update",
+        content: "update",
+    },
+    Token {
+        kind: RightBracket,
+        value: "]",
+        content: "]",
+    },
+    Token {
+        kind: LeftParen,
+        value: "(",
+        content: "(",
+    },
+    Token {
+        kind: Number,
+        value: "1",
+        content: "1",
+    },
+    Token {
+        kind: Comma,
+        value: ",",
+        content: ",",
+    },
+    Token {
+        kind: String,
+        value: "Hello world!",
+        content: "Hello world!",
+    },
+    Token {
+        kind: RightParen,
+        value: ")",
+        content: ")",
+    },
+    Token {
+        kind: Word,
+        value: "coords",
+        content: "coords",
+    },
+    Token {
+        kind: LeftBracket,
+        value: "[",
+        content: "[",
+    },
+    Token {
+        kind: Number,
+        value: "5",
+        content: "5",
+    },
+    Token {
+        kind: RightBracket,
+        value: "]",
+        content: "]",
+    },
+    Token {
+        kind: LeftBracket,
+        value: "[",
+        content: "[",
+    },
+    Token {
+        kind: Period,
+        value: ".",
+        content: ".",
+    },
+    Token {
+        kind: Word,
+        value: "update",
+        content: "update",
+    },
+    Token {
+        kind: RightBracket,
+        value: "]",
+        content: "]",
+    },
+    Token {
+        kind: LeftParen,
+        value: "(",
+        content: "(",
+    },
+    Token {
+        kind: Number,
+        value: "1",
+        content: "1",
+    },
+    Token {
+        kind: Comma,
+        value: ",",
+        content: ",",
+    },
+    Token {
+        kind: Word,
+        value: "coords",
+        content: "coords",
+    },
+    Token {
+        kind: LeftBracket,
+        value: "[",
+        content: "[",
+    },
+    Token {
+        kind: Number,
+        value: "5",
+        content: "5",
+    },
+    Token {
+        kind: RightBracket,
+        value: "]",
+        content: "]",
+    },
+    Token {
+        kind: LeftBracket,
+        value: "[",
+        content: "[",
+    },
+    Token {
+        kind: Number,
+        value: "1",
+        content: "1",
+    },
+    Token {
+        kind: RightBracket,
+        value: "]",
+        content: "]",
+    },
+    Token {
+        kind: Times,
+        value: "*",
+        content: "*",
+    },
+    Token {
+        kind: Number,
+        value: "2",
+        content: "2",
+    },
+    Token {
+        kind: RightParen,
+        value: ")",
+        content: ")",
+    },
+    Token {
+        kind: Word,
+        value: "fire",
+        content: "fire",
+    },
+    Token {
+        kind: LeftParen,
+        value: "(",
+        content: "(",
+    },
+    Token {
+        kind: Word,
+        value: "coords",
+        content: "coords",
+    },
+    Token {
+        kind: RightParen,
+        value: ")",
+        content: ")",
+    },
+    Token {
+        kind: Var,
+        value: "burn",
+        content: "burn",
+    },
+    Token {
+        kind: Word,
+        value: "todo",
+        content: "todo",
+    },
+    Token {
+        kind: LessThan,
+        value: "<",
+        content: "<",
+    },
+    Token {
+        kind: LeftBrace,
+        value: "{",
+        content: "{",
+    },
+    Token {
+        kind: String,
+        value: "1",
+        content: "1",
+    },
+    Token {
+        kind: Colon,
+        value: ":",
+        content: ":",
+    },
+    Token {
+        kind: String,
+        value: "Burn",
+        content: "Burn",
+    },
+    Token {
+        kind: Comma,
+        value: ",",
+        content: ",",
+    },
+    Token {
+        kind: String,
+        value: "2",
+        content: "2",
+    },
+    Token {
+        kind: Colon,
+        value: ":",
+        content: ":",
+    },
+    Token {
+        kind: String,
+        value: "Clean",
+        content: "Clean",
+    },
+    Token {
+        kind: Comma,
+        value: ",",
+        content: ",",
+    },
+    Token {
+        kind: String,
+        value: "3",
+        content: "3",
+    },
+    Token {
+        kind: Colon,
+        value: ":",
+        content: ":",
+    },
+    Token {
+        kind: String,
+        value: "Escape",
+        content: "Escape",
+    },
+    Token {
+        kind: RightBrace,
+        value: "}",
+        content: "}",
+    },
+    Token {
+        kind: Word,
+        value: "fire",
+        content: "fire",
+    },
+    Token {
+        kind: LeftParen,
+        value: "(",
+        content: "(",
+    },
+    Token {
+        kind: Word,
+        value: "todo",
+        content: "todo",
+    },
+    Token {
+        kind: RightParen,
+        value: ")",
+        content: ")",
+    },
+    Token {
+        kind: Word,
+        value: "fire",
+        content: "fire",
+    },
+    Token {
+        kind: LeftParen,
+        value: "(",
+        content: "(",
+    },
+    Token {
+        kind: Word,
+        value: "todo",
+        content: "todo",
+    },
+    Token {
+        kind: LeftBracket,
+        value: "[",
+        content: "[",
+    },
+    Token {
+        kind: String,
+        value: "1",
+        content: "1",
+    },
+    Token {
+        kind: RightBracket,
+        value: "]",
+        content: "]",
+    },
+    Token {
+        kind: RightParen,
+        value: ")",
+        content: ")",
+    },
+    Token {
+        kind: Word,
+        value: "todo",
+        content: "todo",
+    },
+    Token {
+        kind: LeftBracket,
+        value: "[",
+        content: "[",
+    },
+    Token {
+        kind: Period,
+        value: ".",
+        content: ".",
+    },
+    Token {
+        kind: Word,
+        value: "update",
+        content: "update",
+    },
+    Token {
+        kind: RightBracket,
+        value: "]",
+        content: "]",
+    },
+    Token {
+        kind: LeftParen,
+        value: "(",
+        content: "(",
+    },
+    Token {
+        kind: String,
+        value: "2",
+        content: "2",
+    },
+    Token {
+        kind: Comma,
+        value: ",",
+        content: ",",
+    },
+    Token {
+        kind: LeftBracket,
+        value: "[",
+        content: "[",
+    },
+    Token {
+        kind: Number,
+        value: "1",
+        content: "1",
+    },
+    Token {
+        kind: Comma,
+        value: ",",
+        content: ",",
+    },
+    Token {
+        kind: Number,
+        value: "2",
+        content: "2",
+    },
+    Token {
+        kind: Comma,
+        value: ",",
+        content: ",",
+    },
+    Token {
+        kind: LeftBrace,
+        value: "{",
+        content: "{",
+    },
+    Token {
+        kind: String,
+        value: "a",
+        content: "a",
+    },
+    Token {
+        kind: Colon,
+        value: ":",
+        content: ":",
+    },
+    Token {
+        kind: String,
+        value: "foo",
+        content: "foo",
+    },
+    Token {
+        kind: Comma,
+        value: ",",
+        content: ",",
+    },
+    Token {
+        kind: String,
+        value: "b",
+        content: "b",
+    },
+    Token {
+        kind: Colon,
+        value: ":",
+        content: ":",
+    },
+    Token {
+        kind: String,
+        value: "bar",
+        content: "bar",
+    },
+    Token {
+        kind: RightBrace,
+        value: "}",
+        content: "}",
+    },
+    Token {
+        kind: RightBracket,
+        value: "]",
+        content: "]",
+    },
+    Token {
+        kind: RightParen,
+        value: ")",
+        content: ")",
+    },
+    Token {
+        kind: Word,
+        value: "fire",
+        content: "fire",
+    },
+    Token {
+        kind: LeftParen,
+        value: "(",
+        content: "(",
+    },
+    Token {
+        kind: String,
+        value: "Updated: ",
+        content: "Updated: ",
+    },
+    Token {
+        kind: Comma,
+        value: ",",
+        content: ",",
+    },
+    Token {
+        kind: Word,
+        value: "todo",
+        content: "todo",
+    },
+    Token {
+        kind: RightParen,
+        value: ")",
+        content: ")",
+    },
+    Token {
+        kind: Word,
+        value: "fire",
+        content: "fire",
+    },
+    Token {
+        kind: LeftParen,
+        value: "(",
+        content: "(",
+    },
+    Token {
+        kind: Word,
+        value: "todo",
+        content: "todo",
+    },
+    Token {
+        kind: LeftBracket,
+        value: "[",
+        content: "[",
+    },
+    Token {
+        kind: String,
+        value: "2",
+        content: "2",
+    },
+    Token {
+        kind: RightBracket,
+        value: "]",
+        content: "]",
+    },
+    Token {
+        kind: LeftBracket,
+        value: "[",
+        content: "[",
+    },
+    Token {
+        kind: Number,
+        value: "2",
+        content: "2",
+    },
+    Token {
+        kind: RightBracket,
+        value: "]",
+        content: "]",
+    },
+    Token {
+        kind: LeftBracket,
+        value: "[",
+        content: "[",
+    },
+    Token {
+        kind: String,
+        value: "b",
+        content: "b",
+    },
+    Token {
+        kind: RightBracket,
+        value: "]",
+        content: "]",
+    },
+    Token {
+        kind: RightParen,
+        value: ")",
+        content: ")",
+    },
+    Token {
+        kind: Var,
+        value: "burn",
+        content: "burn",
+    },
+    Token {
+        kind: Word,
+        value: "test",
+        content: "test",
+    },
+    Token {
+        kind: LessThan,
+        value: "<",
+        content: "<",
+    },
+    Token {
+        kind: LeftBracket,
+        value: "[",
+        content: "[",
+    },
+    Token {
+        kind: Number,
+        value: "1",
+        content: "1",
+    },
+    Token {
+        kind: Comma,
+        value: ",",
+        content: ",",
+    },
+    Token {
+        kind: Number,
+        value: "1",
+        content: "1",
+    },
+    Token {
+        kind: RightBracket,
+        value: "]",
+        content: "]",
+    },
+    Token {
+        kind: Word,
+        value: "fire",
+        content: "fire",
+    },
+    Token {
+        kind: LeftParen,
+        value: "(",
+        content: "(",
+    },
+    Token {
+        kind: Word,
+        value: "test",
+        content: "test",
+    },
+    Token {
+        kind: LeftBracket,
+        value: "[",
+        content: "[",
+    },
+    Token {
+        kind: Number,
+        value: "0",
+        content: "0",
+    },
+    Token {
+        kind: RightBracket,
+        value: "]",
+        content: "]",
+    },
+    Token {
+        kind: LessThanOrEqual,
+        value: "<=",
+        content: "<=",
+    },
+    Token {
+        kind: Word,
+        value: "test",
+        content: "test",
+    },
+    Token {
+        kind: LeftBracket,
+        value: "[",
+        content: "[",
+    },
+    Token {
+        kind: Number,
+        value: "1",
+        content: "1",
+    },
+    Token {
+        kind: RightBracket,
+        value: "]",
+        content: "]",
+    },
+    Token {
+        kind: RightParen,
+        value: ")",
+        content: ")",
+    },
+    Token {
+        kind: Eof,
+        value: "",
+        content: "",
+    },
+]
